@@ -3,31 +3,15 @@
 #include <queue>
 #include <vector>
 #include <memory>
-namespace types{
-    struct Date{
-        unsigned int d, m, y, h, s;
-        bool operator < (Date& other){
-            if(y < other.y)
-                return true;
-            if(m < other.m)
-                return true;
-            if(d < other.d)
-                return true;
-            if(h < other.h)
-                return true;
-            if (s < other.s)
-                return true;
-            return false;
-        }
-};
-}
+#include <ctime>
+#include <map>
+#include <atomic>
 namespace railway{
 
 
     
     enum ETrainEvent{
         TRAIN_LATE,
-        TRAIN_IN_QUEUE,
         TRAIN_ARRIVED,
         TRAIN_DEPARTURING
     };
@@ -36,6 +20,7 @@ namespace railway{
     };
     enum ETrainState{
         IN_TRIP,
+        IN_QUEUE,
         ARRIVED,
         DEPARTURED
     };
@@ -46,41 +31,43 @@ namespace railway{
     class ITrain{
         friend RailwayStation;
         
+        protected:
+        
         unsigned int wagons;
         unsigned int id;
         ETrainState state;
-        types::Date arriving_date;
+        std::time_t arriving_time;
         std::string train_name;
         public:
         ITrain();
-        virtual void depart() = 0;
         virtual void update_params() = 0;
     };
     
     class VirtualTrain: public ITrain{
-        
+        unsigned int time_for_road; 
+        void tick();
+
         public:
-        VirtualTrain();
+        VirtualTrain(unsigned int wagons, unsigned int time_to_arrive);
         virtual void update_params() override;
-        virtual void depart () override;
     };
     
     class RailwayStation{
         int rail_num;
         std::queue <std::shared_ptr<ITrain>> train_queue;
         std::vector <std::shared_ptr<ITrain>> rails;
+        std::map<unsigned int,std::shared_ptr<ITrain>> trains;
         static RailwayStation * station_instance;
-        
+        static std::atomic<unsigned int> id_counter;
         public:
         
         RailwayStation(const int &rail_num);
-        void train_event(ITrain &train, const ETrainEvent & train_event);
+        void train_event(const unsigned int &train_id, const ETrainEvent & train_event);
         int get_rail_num() const;
         int get_train_queue_size() const;
-        std::vector<std::shared_ptr<const ITrain>> get_trains_on_rail() const;
+        std::vector<std::shared_ptr<ITrain>> get_trains_on_rail() const;
         static RailwayStation * get_instance();
-
-        
+        void register_train(std::shared_ptr<ITrain> train);        
                 
     };
 
