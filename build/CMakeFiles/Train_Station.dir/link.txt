@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/Train_Station.dir/main.cpp.o -o Train_Station  railway/libRailwayManager.a 

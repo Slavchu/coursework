@@ -1,0 +1,2 @@
+/usr/bin/ar qc libRailwayManager.a CMakeFiles/RailwayManager.dir/railway.cpp.o
+/usr/bin/ranlib libRailwayManager.a

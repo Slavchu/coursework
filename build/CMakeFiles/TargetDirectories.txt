@@ -1,0 +1,6 @@
+/home/fuckoff/projects/coursework/build/CMakeFiles/Train_Station.dir
+/home/fuckoff/projects/coursework/build/CMakeFiles/edit_cache.dir
+/home/fuckoff/projects/coursework/build/CMakeFiles/rebuild_cache.dir
+/home/fuckoff/projects/coursework/build/railway/CMakeFiles/RailwayManager.dir
+/home/fuckoff/projects/coursework/build/railway/CMakeFiles/edit_cache.dir
+/home/fuckoff/projects/coursework/build/railway/CMakeFiles/rebuild_cache.dir

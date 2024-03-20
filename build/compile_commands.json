@@ -1,0 +1,14 @@
+[
+{
+  "directory": "/home/fuckoff/projects/coursework/build",
+  "command": "/usr/bin/g++  -I/home/fuckoff/projects/coursework/railway/include -g -o CMakeFiles/Train_Station.dir/main.cpp.o -c /home/fuckoff/projects/coursework/main.cpp",
+  "file": "/home/fuckoff/projects/coursework/main.cpp",
+  "output": "CMakeFiles/Train_Station.dir/main.cpp.o"
+},
+{
+  "directory": "/home/fuckoff/projects/coursework/build/railway",
+  "command": "/usr/bin/g++  -I/home/fuckoff/projects/coursework/railway/include -g -o CMakeFiles/RailwayManager.dir/railway.cpp.o -c /home/fuckoff/projects/coursework/railway/railway.cpp",
+  "file": "/home/fuckoff/projects/coursework/railway/railway.cpp",
+  "output": "railway/CMakeFiles/RailwayManager.dir/railway.cpp.o"
+}
+]
