@@ -12,9 +12,7 @@ int main(){
     for(int i = 0; i < 50; i++)
         Railway.register_train(std::make_shared<railway::VirtualTrain>(rand()%10, rand()%20+5));
     
-    while(1){
-
-    }
+    Server("127.0.0.1", 50051);
     
     return 0;
 

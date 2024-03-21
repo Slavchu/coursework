@@ -1,4 +1,4 @@
-package main
+package httpserver_go
 
 import (
 	"fmt"
@@ -8,6 +8,10 @@ import (
 	"net/http"
 	"os"
 	"strings"
+
+	pb "http_railway_server/railway_grpc"
+
+	"google.golang.org/grpc"
 )
 
 func reader(w http.ResponseWriter, r *http.Request) {
@@ -45,6 +49,18 @@ func reader(w http.ResponseWriter, r *http.Request) {
 
 }
 func main() {
+	var opts []grpc.DialOption
+	railway_server_ip := "localhost:50051"
+	conn, err := grpc.Dial(*&railway_server_ip, opts...)
+	if err != nil {
+
+	}
+	defer conn.Close()
+	client := pb.NewRouteGuideClient(conn)
+	train, err := client.GetTrain(4)
+	if err == nil {
+		println(train.state)
+	}
 	http.Handle("/image/", http.StripPrefix("/image/", http.FileServer(http.Dir("./site/image")))) //Image Fix...'''
 	http.HandleFunc("/", reader)
 	println("SERVER STARTED")
