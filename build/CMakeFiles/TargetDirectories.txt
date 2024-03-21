@@ -1,6 +1,12 @@
 /home/fuckoff/projects/coursework/build/CMakeFiles/Train_Station.dir
 /home/fuckoff/projects/coursework/build/CMakeFiles/edit_cache.dir
 /home/fuckoff/projects/coursework/build/CMakeFiles/rebuild_cache.dir
+/home/fuckoff/projects/coursework/build/CPP_SERVER/CMakeFiles/grpc_server.dir
+/home/fuckoff/projects/coursework/build/CPP_SERVER/CMakeFiles/edit_cache.dir
+/home/fuckoff/projects/coursework/build/CPP_SERVER/CMakeFiles/rebuild_cache.dir
+/home/fuckoff/projects/coursework/build/CPP_SERVER/GRPC_CPP/CMakeFiles/GRPC_CPP_RAILWAY.dir
+/home/fuckoff/projects/coursework/build/CPP_SERVER/GRPC_CPP/CMakeFiles/edit_cache.dir
+/home/fuckoff/projects/coursework/build/CPP_SERVER/GRPC_CPP/CMakeFiles/rebuild_cache.dir
 /home/fuckoff/projects/coursework/build/railway/CMakeFiles/RailwayManager.dir
 /home/fuckoff/projects/coursework/build/railway/CMakeFiles/edit_cache.dir
 /home/fuckoff/projects/coursework/build/railway/CMakeFiles/rebuild_cache.dir

@@ -479,3 +479,47 @@ events:
       
       
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake/Modules/CheckCSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "/usr/share/cmake/Modules/FindThreads.cmake:97 (CHECK_C_SOURCE_COMPILES)"
+      - "/usr/share/cmake/Modules/FindThreads.cmake:163 (_threads_check_libc)"
+      - "/usr/share/cmake/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
+      - "/usr/lib/cmake/absl/abslConfig.cmake:4 (find_dependency)"
+      - "/usr/lib/cmake/protobuf/protobuf-config.cmake:9 (find_package)"
+      - "/usr/share/cmake/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
+      - "/usr/lib/cmake/grpc/gRPCConfig.cmake:9 (find_dependency)"
+      - "GRPC_CPP/CMakeLists.txt:3 (find_package)"
+    checks:
+      - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
+    directories:
+      source: "/home/fuckoff/projects/coursework/build/CMakeFiles/CMakeScratch/TryCompile-kYBz6M"
+      binary: "/home/fuckoff/projects/coursework/build/CMakeFiles/CMakeScratch/TryCompile-kYBz6M"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/usr/lib/cmake/grpc/modules"
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: '/home/fuckoff/projects/coursework/build/CMakeFiles/CMakeScratch/TryCompile-kYBz6M'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_edf34/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_edf34.dir/build.make CMakeFiles/cmTC_edf34.dir/build
+        make[1]: входимо до каталогу «/home/fuckoff/projects/coursework/build/CMakeFiles/CMakeScratch/TryCompile-kYBz6M»
+        Building C object CMakeFiles/cmTC_edf34.dir/src.c.o
+        /usr/bin/gcc -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_edf34.dir/src.c.o -c /home/fuckoff/projects/coursework/build/CMakeFiles/CMakeScratch/TryCompile-kYBz6M/src.c
+        Linking C executable cmTC_edf34
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_edf34.dir/link.txt --verbose=1
+        /usr/bin/gcc CMakeFiles/cmTC_edf34.dir/src.c.o -o cmTC_edf34 
+        make[1]: Залишаю каталог "/home/fuckoff/projects/coursework/build/CMakeFiles/CMakeScratch/TryCompile-kYBz6M"
+        
+      exitCode: 0
+...

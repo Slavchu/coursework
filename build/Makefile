@@ -130,6 +130,32 @@ Train_Station/fast:
 .PHONY : Train_Station/fast
 
 #=============================================================================
+# Target rules for targets named grpc_server
+
+# Build rule for target.
+grpc_server: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 grpc_server
+.PHONY : grpc_server
+
+# fast build rule for target.
+grpc_server/fast:
+	$(MAKE) $(MAKESILENT) -f CPP_SERVER/CMakeFiles/grpc_server.dir/build.make CPP_SERVER/CMakeFiles/grpc_server.dir/build
+.PHONY : grpc_server/fast
+
+#=============================================================================
+# Target rules for targets named GRPC_CPP_RAILWAY
+
+# Build rule for target.
+GRPC_CPP_RAILWAY: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 GRPC_CPP_RAILWAY
+.PHONY : GRPC_CPP_RAILWAY
+
+# fast build rule for target.
+GRPC_CPP_RAILWAY/fast:
+	$(MAKE) $(MAKESILENT) -f CPP_SERVER/GRPC_CPP/CMakeFiles/GRPC_CPP_RAILWAY.dir/build.make CPP_SERVER/GRPC_CPP/CMakeFiles/GRPC_CPP_RAILWAY.dir/build
+.PHONY : GRPC_CPP_RAILWAY/fast
+
+#=============================================================================
 # Target rules for targets named RailwayManager
 
 # Build rule for target.
@@ -174,8 +200,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... GRPC_CPP_RAILWAY"
 	@echo "... RailwayManager"
 	@echo "... Train_Station"
+	@echo "... grpc_server"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

@@ -172,4 +172,335 @@ CMakeFiles/Train_Station.dir/main.cpp.o: \
  /usr/include/c++/13.2.1/ctime /usr/include/c++/13.2.1/map \
  /usr/include/c++/13.2.1/bits/stl_map.h \
  /usr/include/c++/13.2.1/bits/stl_multimap.h \
- /usr/include/c++/13.2.1/atomic
+ /usr/include/c++/13.2.1/atomic \
+ /home/fuckoff/projects/coursework/CPP_SERVER/include/grpc_server.h \
+ /home/fuckoff/projects/coursework/CPP_SERVER/GRPC_CPP/./messages.grpc.pb.h \
+ /home/fuckoff/projects/coursework/CPP_SERVER/GRPC_CPP/./messages.pb.h \
+ /usr/include/c++/13.2.1/limits /usr/include/c++/13.2.1/utility \
+ /usr/include/c++/13.2.1/bits/stl_relops.h \
+ /usr/include/google/protobuf/port_def.inc \
+ /usr/include/absl/base/attributes.h /usr/include/absl/base/config.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/13.2.1/include/limits.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/13.2.1/include/syslimits.h \
+ /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+ /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+ /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+ /usr/include/bits/uio_lim.h /usr/include/absl/base/options.h \
+ /usr/include/absl/base/policy_checks.h \
+ /usr/include/google/protobuf/port_undef.inc \
+ /usr/include/google/protobuf/io/coded_stream.h /usr/include/assert.h \
+ /usr/include/c++/13.2.1/climits /usr/include/c++/13.2.1/cstring \
+ /usr/include/string.h /usr/include/strings.h \
+ /usr/include/google/protobuf/stubs/common.h \
+ /usr/include/c++/13.2.1/algorithm \
+ /usr/include/c++/13.2.1/bits/stl_algo.h \
+ /usr/include/c++/13.2.1/bits/algorithmfwd.h \
+ /usr/include/c++/13.2.1/bits/uniform_int_dist.h \
+ /usr/include/c++/13.2.1/pstl/glue_algorithm_defs.h \
+ /usr/include/absl/strings/string_view.h /usr/include/c++/13.2.1/cassert \
+ /usr/include/c++/13.2.1/iterator \
+ /usr/include/c++/13.2.1/bits/stream_iterator.h \
+ /usr/include/absl/base/internal/throw_delegate.h \
+ /usr/include/absl/base/macros.h /usr/include/absl/base/optimization.h \
+ /usr/include/absl/base/port.h \
+ /usr/include/google/protobuf/stubs/platform_macros.h \
+ /usr/include/google/protobuf/stubs/port.h \
+ /usr/include/c++/13.2.1/stdlib.h /usr/include/c++/13.2.1/cstdint \
+ /usr/include/byteswap.h /usr/include/absl/log/absl_check.h \
+ /usr/include/absl/log/internal/check_impl.h \
+ /usr/include/absl/log/internal/check_op.h \
+ /usr/include/c++/13.2.1/sstream /usr/include/c++/13.2.1/bits/sstream.tcc \
+ /usr/include/absl/log/internal/nullguard.h /usr/include/c++/13.2.1/array \
+ /usr/include/c++/13.2.1/compare \
+ /usr/include/absl/log/internal/nullstream.h /usr/include/unistd.h \
+ /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+ /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
+ /usr/include/bits/getopt_core.h /usr/include/bits/unistd_ext.h \
+ /usr/include/linux/close_range.h /usr/include/absl/base/log_severity.h \
+ /usr/include/absl/log/internal/strip.h \
+ /usr/include/absl/log/internal/log_message.h \
+ /usr/include/absl/base/internal/errno_saver.h \
+ /usr/include/absl/log/log_entry.h \
+ /usr/include/absl/log/internal/config.h /usr/include/absl/time/time.h \
+ /usr/include/sys/time.h /usr/include/c++/13.2.1/chrono \
+ /usr/include/c++/13.2.1/bits/chrono.h /usr/include/c++/13.2.1/ratio \
+ /usr/include/c++/13.2.1/bits/parse_numbers.h \
+ /usr/include/c++/13.2.1/cmath /usr/include/math.h \
+ /usr/include/bits/math-vector.h /usr/include/bits/libm-simd-decl-stubs.h \
+ /usr/include/bits/flt-eval-method.h /usr/include/bits/fp-logb.h \
+ /usr/include/bits/fp-fast.h \
+ /usr/include/bits/mathcalls-helper-functions.h \
+ /usr/include/bits/mathcalls.h /usr/include/bits/mathcalls-narrow.h \
+ /usr/include/bits/iscanonical.h /usr/include/c++/13.2.1/bits/specfun.h \
+ /usr/include/c++/13.2.1/tr1/gamma.tcc \
+ /usr/include/c++/13.2.1/tr1/special_function_util.h \
+ /usr/include/c++/13.2.1/tr1/bessel_function.tcc \
+ /usr/include/c++/13.2.1/tr1/beta_function.tcc \
+ /usr/include/c++/13.2.1/tr1/ell_integral.tcc \
+ /usr/include/c++/13.2.1/tr1/exp_integral.tcc \
+ /usr/include/c++/13.2.1/tr1/hypergeometric.tcc \
+ /usr/include/c++/13.2.1/tr1/legendre_function.tcc \
+ /usr/include/c++/13.2.1/tr1/modified_bessel_func.tcc \
+ /usr/include/c++/13.2.1/tr1/poly_hermite.tcc \
+ /usr/include/c++/13.2.1/tr1/poly_laguerre.tcc \
+ /usr/include/c++/13.2.1/tr1/riemann_zeta.tcc \
+ /usr/include/absl/time/civil_time.h \
+ /usr/include/absl/time/internal/cctz/include/cctz/civil_time.h \
+ /usr/include/absl/time/internal/cctz/include/cctz/civil_time_detail.h \
+ /usr/include/absl/time/internal/cctz/include/cctz/time_zone.h \
+ /usr/include/absl/types/span.h /usr/include/absl/meta/type_traits.h \
+ /usr/include/c++/13.2.1/functional \
+ /usr/include/c++/13.2.1/bits/std_function.h \
+ /usr/include/c++/13.2.1/unordered_map \
+ /usr/include/c++/13.2.1/bits/unordered_map.h \
+ /usr/include/c++/13.2.1/bits/hashtable.h \
+ /usr/include/c++/13.2.1/bits/hashtable_policy.h \
+ /usr/include/c++/13.2.1/bits/enable_special_members.h \
+ /usr/include/absl/types/internal/span.h \
+ /usr/include/absl/algorithm/algorithm.h /usr/include/absl/log/log_sink.h \
+ /usr/include/absl/strings/internal/has_absl_stringify.h \
+ /usr/include/absl/log/internal/conditions.h \
+ /usr/include/absl/log/internal/voidify.h \
+ /usr/include/absl/numeric/bits.h \
+ /usr/include/absl/numeric/internal/bits.h \
+ /usr/include/absl/strings/cord.h \
+ /usr/include/absl/base/internal/endian.h /usr/include/absl/base/casts.h \
+ /usr/include/absl/base/internal/identity.h \
+ /usr/include/absl/base/internal/unaligned_access.h \
+ /usr/include/absl/base/internal/per_thread_tls.h \
+ /usr/include/absl/container/inlined_vector.h \
+ /usr/include/absl/container/internal/inlined_vector.h \
+ /usr/include/absl/container/internal/compressed_tuple.h \
+ /usr/include/absl/utility/utility.h \
+ /usr/include/absl/base/internal/inline_variable.h \
+ /usr/include/absl/base/internal/invoke.h \
+ /usr/include/absl/memory/memory.h \
+ /usr/include/absl/crc/internal/crc_cord_state.h \
+ /usr/include/absl/crc/crc32c.h \
+ /usr/include/absl/crc/internal/crc32c_inline.h \
+ /usr/include/absl/crc/internal/crc32_x86_arm_combined_simd.h \
+ /usr/include/absl/strings/str_format.h \
+ /usr/include/absl/strings/internal/str_format/arg.h \
+ /usr/include/c++/13.2.1/iomanip /usr/include/c++/13.2.1/locale \
+ /usr/include/c++/13.2.1/bits/locale_facets_nonio.h \
+ /usr/include/c++/13.2.1/x86_64-pc-linux-gnu/bits/time_members.h \
+ /usr/include/c++/13.2.1/x86_64-pc-linux-gnu/bits/messages_members.h \
+ /usr/include/libintl.h /usr/include/c++/13.2.1/bits/codecvt.h \
+ /usr/include/c++/13.2.1/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/13.2.1/bits/locale_conv.h \
+ /usr/include/c++/13.2.1/bits/quoted_string.h \
+ /usr/include/absl/numeric/int128.h \
+ /usr/include/absl/numeric/int128_have_intrinsic.inc \
+ /usr/include/absl/strings/internal/str_format/extension.h \
+ /usr/include/absl/strings/internal/str_format/output.h \
+ /usr/include/absl/strings/internal/str_format/bind.h \
+ /usr/include/absl/strings/internal/str_format/checker.h \
+ /usr/include/absl/strings/internal/str_format/constexpr_parser.h \
+ /usr/include/absl/base/const_init.h \
+ /usr/include/absl/strings/internal/str_format/parser.h \
+ /usr/include/absl/functional/function_ref.h \
+ /usr/include/absl/functional/internal/function_ref.h \
+ /usr/include/absl/functional/any_invocable.h \
+ /usr/include/absl/functional/internal/any_invocable.h \
+ /usr/include/absl/strings/cord_analysis.h \
+ /usr/include/absl/strings/internal/cord_internal.h \
+ /usr/include/absl/container/internal/container_memory.h \
+ /usr/include/absl/strings/cord_buffer.h \
+ /usr/include/absl/strings/internal/cord_rep_flat.h \
+ /usr/include/absl/strings/internal/cord_data_edge.h \
+ /usr/include/absl/strings/internal/cord_rep_btree.h \
+ /usr/include/absl/base/internal/raw_logging.h \
+ /usr/include/absl/base/internal/atomic_hook.h \
+ /usr/include/absl/strings/internal/cord_rep_btree_reader.h \
+ /usr/include/absl/strings/internal/cord_rep_btree_navigator.h \
+ /usr/include/absl/strings/internal/cord_rep_crc.h \
+ /usr/include/absl/strings/internal/cord_rep_ring.h \
+ /usr/include/absl/container/internal/layout.h \
+ /usr/include/absl/strings/str_cat.h \
+ /usr/include/absl/strings/internal/stringify_sink.h \
+ /usr/include/absl/strings/numbers.h /usr/include/c++/13.2.1/cxxabi.h \
+ /usr/include/c++/13.2.1/x86_64-pc-linux-gnu/bits/cxxabi_tweaks.h \
+ /usr/include/absl/strings/internal/cordz_functions.h \
+ /usr/include/absl/strings/internal/cordz_info.h \
+ /usr/include/absl/base/internal/spinlock.h \
+ /usr/include/absl/base/dynamic_annotations.h \
+ /usr/include/absl/base/internal/dynamic_annotations.h \
+ /usr/include/absl/base/internal/low_level_scheduling.h \
+ /usr/include/absl/base/internal/scheduling_mode.h \
+ /usr/include/absl/base/internal/tsan_mutex_interface.h \
+ /usr/include/absl/base/thread_annotations.h \
+ /usr/include/absl/base/internal/thread_annotations.h \
+ /usr/include/absl/strings/internal/cordz_handle.h \
+ /usr/include/absl/strings/internal/cordz_statistics.h \
+ /usr/include/absl/strings/internal/cordz_update_tracker.h \
+ /usr/include/absl/synchronization/mutex.h \
+ /usr/include/absl/base/internal/low_level_alloc.h \
+ /usr/include/absl/base/internal/thread_identity.h \
+ /usr/include/absl/synchronization/internal/kernel_timeout.h \
+ /usr/include/absl/time/clock.h \
+ /usr/include/absl/synchronization/internal/per_thread_sem.h \
+ /usr/include/absl/synchronization/internal/create_thread_identity.h \
+ /usr/include/absl/strings/internal/cordz_update_scope.h \
+ /usr/include/absl/strings/internal/resize_uninitialized.h \
+ /usr/include/absl/strings/internal/string_constant.h \
+ /usr/include/absl/types/optional.h /usr/include/c++/13.2.1/optional \
+ /usr/include/google/protobuf/port.h /usr/include/google/protobuf/arena.h \
+ /usr/include/google/protobuf/arena_align.h \
+ /usr/include/google/protobuf/serial_arena.h \
+ /usr/include/absl/base/prefetch.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/13.2.1/include/xmmintrin.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/13.2.1/include/mmintrin.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/13.2.1/include/mm_malloc.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/13.2.1/include/emmintrin.h \
+ /usr/include/google/protobuf/arena_cleanup.h \
+ /usr/include/absl/log/absl_log.h \
+ /usr/include/absl/log/internal/log_impl.h \
+ /usr/include/google/protobuf/arenaz_sampler.h \
+ /usr/include/google/protobuf/string_block.h \
+ /usr/include/google/protobuf/thread_safe_arena.h \
+ /usr/include/google/protobuf/arena_allocation_policy.h \
+ /usr/include/google/protobuf/arenastring.h \
+ /usr/include/google/protobuf/explicitly_constructed.h \
+ /usr/include/google/protobuf/generated_message_bases.h \
+ /usr/include/google/protobuf/generated_message_util.h \
+ /usr/include/absl/base/call_once.h \
+ /usr/include/absl/base/internal/spinlock_wait.h \
+ /usr/include/google/protobuf/any.h \
+ /usr/include/google/protobuf/message_lite.h \
+ /usr/include/google/protobuf/internal_visibility.h \
+ /usr/include/google/protobuf/metadata_lite.h \
+ /usr/include/google/protobuf/has_bits.h \
+ /usr/include/google/protobuf/implicit_weak_message.h \
+ /usr/include/google/protobuf/repeated_field.h \
+ /usr/include/google/protobuf/generated_enum_util.h \
+ /usr/include/google/protobuf/repeated_ptr_field.h \
+ /usr/include/google/protobuf/wire_format_lite.h \
+ /usr/include/google/protobuf/io/zero_copy_stream_impl.h \
+ /usr/include/google/protobuf/io/zero_copy_stream.h \
+ /usr/include/google/protobuf/io/zero_copy_stream_impl_lite.h \
+ /usr/include/google/protobuf/stubs/callback.h \
+ /usr/include/google/protobuf/message.h \
+ /usr/include/google/protobuf/descriptor.h \
+ /usr/include/absl/container/btree_map.h \
+ /usr/include/absl/container/internal/btree.h \
+ /usr/include/absl/container/internal/common.h \
+ /usr/include/absl/container/internal/common_policy_traits.h \
+ /usr/include/absl/types/compare.h \
+ /usr/include/absl/container/internal/btree_container.h \
+ /usr/include/absl/container/flat_hash_map.h \
+ /usr/include/absl/algorithm/container.h /usr/include/c++/13.2.1/numeric \
+ /usr/include/c++/13.2.1/bits/stl_numeric.h \
+ /usr/include/c++/13.2.1/pstl/glue_numeric_defs.h \
+ /usr/include/c++/13.2.1/unordered_set \
+ /usr/include/c++/13.2.1/bits/unordered_set.h \
+ /usr/include/absl/container/internal/hash_function_defaults.h \
+ /usr/include/absl/hash/hash.h /usr/include/absl/hash/internal/hash.h \
+ /usr/include/c++/13.2.1/bitset /usr/include/c++/13.2.1/forward_list \
+ /usr/include/c++/13.2.1/bits/forward_list.h \
+ /usr/include/c++/13.2.1/bits/forward_list.tcc \
+ /usr/include/c++/13.2.1/list /usr/include/c++/13.2.1/bits/stl_list.h \
+ /usr/include/c++/13.2.1/bits/list.tcc \
+ /usr/include/absl/container/fixed_array.h \
+ /usr/include/absl/hash/internal/city.h \
+ /usr/include/absl/hash/internal/low_level_hash.h \
+ /usr/include/absl/types/variant.h /usr/include/c++/13.2.1/variant \
+ /usr/include/absl/container/internal/raw_hash_map.h \
+ /usr/include/absl/container/internal/raw_hash_set.h \
+ /usr/include/absl/container/internal/hash_policy_traits.h \
+ /usr/include/absl/container/internal/hashtable_debug_hooks.h \
+ /usr/include/absl/container/internal/hashtablez_sampler.h \
+ /usr/include/absl/profiling/internal/sample_recorder.h \
+ /usr/include/google/protobuf/extension_set.h \
+ /usr/include/google/protobuf/parse_context.h \
+ /usr/include/google/protobuf/endian.h \
+ /usr/include/google/protobuf/inlined_string_field.h \
+ /usr/include/google/protobuf/generated_message_reflection.h \
+ /usr/include/google/protobuf/generated_enum_reflection.h \
+ /usr/include/google/protobuf/unknown_field_set.h \
+ /usr/include/google/protobuf/generated_message_tctable_decl.h \
+ /usr/include/google/protobuf/map.h \
+ /usr/include/google/protobuf/map_type_handler.h \
+ /usr/include/google/protobuf/reflection.h \
+ /usr/include/grpcpp/generic/async_generic_service.h \
+ /usr/include/grpc/support/port_platform.h /usr/include/linux/version.h \
+ /usr/include/grpcpp/impl/server_callback_handlers.h \
+ /usr/include/grpc/grpc.h /usr/include/grpc/byte_buffer.h \
+ /usr/include/grpc/impl/grpc_types.h \
+ /usr/include/grpc/impl/channel_arg_names.h \
+ /usr/include/grpc/impl/compression_types.h /usr/include/grpc/slice.h \
+ /usr/include/grpc/impl/slice_type.h /usr/include/grpc/support/sync.h \
+ /usr/include/grpc/support/time.h \
+ /usr/include/grpc/support/sync_generic.h /usr/include/grpc/support/atm.h \
+ /usr/include/grpc/support/atm_gcc_atomic.h \
+ /usr/include/grpc/support/sync_abseil.h /usr/include/grpc/status.h \
+ /usr/include/grpc/slice_buffer.h \
+ /usr/include/grpc/impl/connectivity_state.h \
+ /usr/include/grpc/impl/propagation_bits.h \
+ /usr/include/grpc/support/log.h \
+ /usr/include/grpcpp/impl/rpc_service_method.h \
+ /usr/include/grpcpp/impl/rpc_method.h \
+ /usr/include/grpcpp/impl/codegen/channel_interface.h \
+ /usr/include/grpcpp/impl/channel_interface.h \
+ /usr/include/grpcpp/impl/call.h /usr/include/grpcpp/impl/call_hook.h \
+ /usr/include/grpcpp/support/status.h /usr/include/grpcpp/impl/status.h \
+ /usr/include/grpcpp/support/config.h \
+ /usr/include/grpcpp/support/status_code_enum.h \
+ /usr/include/grpcpp/support/time.h \
+ /usr/include/grpcpp/support/byte_buffer.h \
+ /usr/include/grpcpp/impl/serialization_traits.h \
+ /usr/include/grpcpp/support/slice.h \
+ /usr/include/grpcpp/support/string_ref.h \
+ /usr/include/grpcpp/server_context.h \
+ /usr/include/grpcpp/impl/call_op_set.h /usr/include/grpc/support/alloc.h \
+ /usr/include/grpcpp/client_context.h \
+ /usr/include/grpcpp/impl/create_auth_context.h \
+ /usr/include/grpcpp/security/auth_context.h \
+ /usr/include/grpcpp/impl/metadata_map.h /usr/include/grpcpp/impl/sync.h \
+ /usr/include/c++/13.2.1/mutex /usr/include/c++/13.2.1/bits/std_mutex.h \
+ /usr/include/c++/13.2.1/bits/unique_lock.h \
+ /usr/include/grpcpp/support/client_interceptor.h \
+ /usr/include/grpcpp/support/interceptor.h \
+ /usr/include/grpcpp/completion_queue.h \
+ /usr/include/grpcpp/impl/codegen/rpc_service_method.h \
+ /usr/include/grpcpp/impl/codegen/status.h \
+ /usr/include/grpcpp/impl/codegen/sync.h \
+ /usr/include/grpcpp/impl/codegen/time.h \
+ /usr/include/grpcpp/impl/completion_queue_tag.h \
+ /usr/include/grpcpp/impl/grpc_library.h \
+ /usr/include/grpcpp/impl/codegen/config.h \
+ /usr/include/grpcpp/impl/call_op_set_interface.h \
+ /usr/include/grpcpp/impl/codegen/intercepted_channel.h \
+ /usr/include/grpcpp/impl/intercepted_channel.h \
+ /usr/include/grpcpp/impl/interceptor_common.h \
+ /usr/include/grpcpp/support/server_interceptor.h \
+ /usr/include/grpcpp/impl/codegen/create_auth_context.h \
+ /usr/include/grpcpp/impl/codegen/metadata_map.h \
+ /usr/include/grpcpp/support/callback_common.h \
+ /usr/include/grpcpp/support/message_allocator.h \
+ /usr/include/grpcpp/support/server_callback.h \
+ /usr/include/grpcpp/support/async_stream.h \
+ /usr/include/grpcpp/impl/service_type.h \
+ /usr/include/grpcpp/server_interface.h \
+ /usr/include/grpcpp/impl/codegen/interceptor_common.h \
+ /usr/include/grpcpp/support/async_unary_call.h \
+ /usr/include/grpcpp/support/client_callback.h \
+ /usr/include/grpc/impl/call.h \
+ /usr/include/grpcpp/support/method_handler.h \
+ /usr/include/grpcpp/support/sync_stream.h \
+ /usr/include/grpcpp/impl/proto_utils.h \
+ /usr/include/grpc/byte_buffer_reader.h \
+ /usr/include/grpcpp/impl/codegen/config_protobuf.h \
+ /usr/include/google/protobuf/descriptor.pb.h \
+ /usr/include/google/protobuf/descriptor_database.h \
+ /usr/include/google/protobuf/util/json_util.h \
+ /usr/include/google/protobuf/json/json.h \
+ /usr/include/absl/status/status.h \
+ /usr/include/absl/status/internal/status_internal.h \
+ /usr/include/google/protobuf/util/type_resolver.h \
+ /usr/include/google/protobuf/type.pb.h \
+ /usr/include/google/protobuf/any.pb.h \
+ /usr/include/google/protobuf/source_context.pb.h \
+ /usr/include/google/protobuf/util/type_resolver_util.h \
+ /usr/include/grpcpp/support/proto_buffer_reader.h \
+ /usr/include/grpcpp/support/proto_buffer_writer.h \
+ /usr/include/grpcpp/support/stub_options.h

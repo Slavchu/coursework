@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/g++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/fuckoff/projects/coursework/railway/include
+CXX_INCLUDES = -I/home/fuckoff/projects/coursework/railway/include -I/home/fuckoff/projects/coursework/CPP_SERVER/include -I/home/fuckoff/projects/coursework/CPP_SERVER/GRPC_CPP/.
 
 CXX_FLAGS = -g
 

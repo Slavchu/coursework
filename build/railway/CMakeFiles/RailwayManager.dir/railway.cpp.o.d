@@ -164,4 +164,31 @@ railway/CMakeFiles/RailwayManager.dir/railway.cpp.o: \
  /usr/include/c++/13.2.1/x86_64-pc-linux-gnu/bits/error_constants.h \
  /usr/include/c++/13.2.1/bits/std_mutex.h \
  /usr/include/c++/13.2.1/bits/unique_lock.h \
- /usr/include/c++/13.2.1/chrono
+ /usr/include/c++/13.2.1/chrono /usr/include/c++/13.2.1/iostream \
+ /usr/include/c++/13.2.1/ostream /usr/include/c++/13.2.1/ios \
+ /usr/include/c++/13.2.1/bits/ios_base.h \
+ /usr/include/c++/13.2.1/bits/locale_classes.h \
+ /usr/include/c++/13.2.1/bits/locale_classes.tcc \
+ /usr/include/c++/13.2.1/system_error /usr/include/c++/13.2.1/stdexcept \
+ /usr/include/c++/13.2.1/streambuf \
+ /usr/include/c++/13.2.1/bits/streambuf.tcc \
+ /usr/include/c++/13.2.1/bits/basic_ios.h \
+ /usr/include/c++/13.2.1/bits/locale_facets.h \
+ /usr/include/c++/13.2.1/cwctype /usr/include/wctype.h \
+ /usr/include/bits/wctype-wchar.h \
+ /usr/include/c++/13.2.1/x86_64-pc-linux-gnu/bits/ctype_base.h \
+ /usr/include/c++/13.2.1/bits/streambuf_iterator.h \
+ /usr/include/c++/13.2.1/x86_64-pc-linux-gnu/bits/ctype_inline.h \
+ /usr/include/c++/13.2.1/bits/locale_facets.tcc \
+ /usr/include/c++/13.2.1/bits/basic_ios.tcc \
+ /usr/include/c++/13.2.1/bits/ostream.tcc /usr/include/c++/13.2.1/istream \
+ /usr/include/c++/13.2.1/bits/istream.tcc /usr/include/c++/13.2.1/iomanip \
+ /usr/include/c++/13.2.1/locale \
+ /usr/include/c++/13.2.1/bits/locale_facets_nonio.h \
+ /usr/include/c++/13.2.1/x86_64-pc-linux-gnu/bits/time_members.h \
+ /usr/include/c++/13.2.1/x86_64-pc-linux-gnu/bits/messages_members.h \
+ /usr/include/libintl.h /usr/include/c++/13.2.1/bits/codecvt.h \
+ /usr/include/c++/13.2.1/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/13.2.1/bits/locale_conv.h \
+ /usr/include/c++/13.2.1/bits/quoted_string.h \
+ /usr/include/c++/13.2.1/sstream /usr/include/c++/13.2.1/bits/sstream.tcc

@@ -1,5 +1,27 @@
-syntax="proto3"
-package RailwayMessages
-message StationRequest{
-    
+syntax="proto3";
+package GRPCRailway;
+
+service Railway{
+    rpc GetRailwayState(Empty)  returns (RailwayState){};
+    rpc GetTrain(Train) returns (Train){};
+
+}
+message RailwayState{
+    uint32 rail_num = 1;
+    repeated uint32 id = 2;
+}
+message Empty{
+
+}
+enum ETrainState{
+    IN_TRIP = 0;
+    IN_QUEUE = 1;
+    ARRIVED = 2;
+    DEPARTURED = 3;
+
+}
+message Train{
+    uint32 id = 1;
+    ETrainState train_state = 2;
+
 }

@@ -2,8 +2,11 @@
 #include <thread>
 #include <mutex>
 #include <chrono>
-
+#include <iostream>
+#include <iomanip>
 using namespace railway;
+
+std::mutex io_mutex;
 
 RailwayStation*  RailwayStation::station_instance = 0;
 std::atomic<unsigned int> RailwayStation::id_counter = 0;
@@ -17,21 +20,31 @@ railway::RailwayStation::RailwayStation(const int &rail_num){
 }
 
 void railway::RailwayStation::train_event(const unsigned int &train_id, const ETrainEvent &train_event){
-    switch(train_event){
+    io_mutex.lock();
+    std::cout << "Registred event. \tTRAIN_ID:" << std::setw(5) << train_id << "\tEVENT:";
+    switch(train_event){    
         case ETrainEvent::TRAIN_ARRIVED:{
+            std::cout << "TRAIN_ARRIVED\n";
             for(auto &it : rails){
                 if(it == NULL){
                     it=trains[train_id];
                     it->state= ETrainState::ARRIVED;
+                    io_mutex.unlock();
+
                     return;
                 }
             }
+            std::cout << "Train in QUEUE.\n";
             auto train = trains[train_id];
             train->state = ETrainState::IN_QUEUE;
             train_queue.push(train);
+            io_mutex.unlock();
+
             break;
         }
         case ETrainEvent::TRAIN_DEPARTURING:{
+            std::cout << "TRAIN_DEPARTURING\n";
+            io_mutex.unlock();
             for(auto &it : rails){
                 if(it == NULL){
                     
@@ -45,7 +58,12 @@ void railway::RailwayStation::train_event(const unsigned int &train_id, const ET
             break;
         }
         case ETrainEvent::TRAIN_LATE:{
+            std::cout << "TRAIN_LATE\n";
+            io_mutex.unlock();
             break;
+        }
+        default:{
+            io_mutex.unlock();
         }
     }
 }
@@ -75,21 +93,29 @@ void railway::RailwayStation::register_train(std::shared_ptr<ITrain> train){
             train->id = id_counter;
         }
         trains.insert(std::make_pair(train->id, train));
-        
+        io_mutex.lock();
+        std::cout << "TRAIN REGISTRED\tID:"<< std::setw(5) << train->id << "\tARIIVING TIME:" << ctime(&train->arriving_time) << std::endl;
+        io_mutex.unlock();
     }
 }
 
 void railway::VirtualTrain::tick(){
-    time_t depart_time = time(0); 
-    arriving_time = depart_time = time_for_road + depart_time; 
+    
     while(1){
-        
-        if(!random()%30){
+        if(time(0) >= arriving_time){
+            RailwayStation::get_instance()->train_event(this->id, ETrainEvent::TRAIN_ARRIVED);
+            break;   
+        }
+        if(random()%30 == 1){
             arriving_time+= random()%15;
             RailwayStation::get_instance()->train_event(this->id, ETrainEvent::TRAIN_LATE);
         }
+        
         std::this_thread::sleep_for(std::chrono::seconds(1));
+        
     }
+    std::this_thread::sleep_for(std::chrono::seconds(5));
+    RailwayStation::get_instance()->train_event(this->id, ETrainEvent::TRAIN_DEPARTURING);
 }
 
 railway::VirtualTrain::VirtualTrain(unsigned int wagons, unsigned int time_to_arrive)
@@ -98,6 +124,8 @@ railway::VirtualTrain::VirtualTrain(unsigned int wagons, unsigned int time_to_ar
     this->wagons = wagons;
     this->time_for_road = time_to_arrive;
     this->state = ETrainState::IN_TRIP;
+    time_t depart_time = time(0); 
+    arriving_time = time_for_road + depart_time; 
     std::thread(&VirtualTrain::tick, this).detach();
 }
 

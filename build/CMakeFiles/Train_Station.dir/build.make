@@ -93,6 +93,8 @@ Train_Station_EXTERNAL_OBJECTS =
 Train_Station: CMakeFiles/Train_Station.dir/main.cpp.o
 Train_Station: CMakeFiles/Train_Station.dir/build.make
 Train_Station: railway/libRailwayManager.a
+Train_Station: CPP_SERVER/libgrpc_server.a
+Train_Station: CPP_SERVER/GRPC_CPP/libGRPC_CPP_RAILWAY.a
 Train_Station: CMakeFiles/Train_Station.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/fuckoff/projects/coursework/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable Train_Station"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Train_Station.dir/link.txt --verbose=$(VERBOSE)
