@@ -15,7 +15,7 @@ railway::RailwayStation::RailwayStation(const int &rail_num){
     if(station_instance) return;
     station_instance = this;
     rails.resize(rail_num);
-    
+    id_counter = 0;
 
 }
 
@@ -68,6 +68,13 @@ void railway::RailwayStation::train_event(const unsigned int &train_id, const ET
     }
 }
 
+std::shared_ptr<ITrain> railway::RailwayStation::get_train_by_id(unsigned int id){
+    if(trains.find(id) != trains.end()){
+        return trains[id];
+    }
+    return 0;
+}
+
 int railway::RailwayStation::get_rail_num() const{
     return rail_num;
 }
@@ -86,6 +93,7 @@ RailwayStation *railway::RailwayStation::get_instance(){
 }
 
 void railway::RailwayStation::register_train(std::shared_ptr<ITrain> train){
+    std::cout << "[DEBUG INFO]" << id_counter << std::endl;
     if(train){
         
         if(!train->id){
@@ -118,9 +126,9 @@ void railway::VirtualTrain::tick(){
     RailwayStation::get_instance()->train_event(this->id, ETrainEvent::TRAIN_DEPARTURING);
 }
 
-railway::VirtualTrain::VirtualTrain(unsigned int wagons, unsigned int time_to_arrive)
-{
+railway::VirtualTrain::VirtualTrain(unsigned int wagons, unsigned int time_to_arrive){
     
+    this->id = 0;
     this->wagons = wagons;
     this->time_for_road = time_to_arrive;
     this->state = ETrainState::IN_TRIP;
@@ -132,6 +140,13 @@ railway::VirtualTrain::VirtualTrain(unsigned int wagons, unsigned int time_to_ar
 void railway::VirtualTrain::update_params(){
 
 }
+unsigned int railway::ITrain::get_id() const{
+    return this->id;
+}
+ETrainState railway::ITrain::get_state() const
+{
+    return this->state;
+}
 railway::ITrain::ITrain(){
-
+    
 }

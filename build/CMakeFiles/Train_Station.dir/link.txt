@@ -1,1 +1,1 @@
-/usr/bin/g++ -g CMakeFiles/Train_Station.dir/main.cpp.o -o Train_Station  railway/libRailwayManager.a CPP_SERVER/libgrpc_server.a CPP_SERVER/GRPC_CPP/libGRPC_CPP_RAILWAY.a -lgrpc++ 
+/usr/bin/g++ -g CMakeFiles/Train_Station.dir/main.cpp.o -o Train_Station  railway/libRailwayManager.a CPP_SERVER/libgrpc_server.a railway/libRailwayManager.a CPP_SERVER/GRPC_CPP/libGRPC_CPP_RAILWAY.a -lgrpc++ 

@@ -39,6 +39,9 @@ namespace railway{
         std::time_t arriving_time;
         std::string train_name;
         public:
+        unsigned int get_id() const;
+        ETrainState get_state() const;
+        
         ITrain();
         virtual void update_params() = 0;
     };
@@ -62,7 +65,9 @@ namespace railway{
         public:
         
         RailwayStation(const int &rail_num);
+        
         void train_event(const unsigned int &train_id, const ETrainEvent & train_event);
+        std::shared_ptr<ITrain> get_train_by_id(unsigned int id);
         int get_rail_num() const;
         int get_train_queue_size() const;
         std::vector<std::shared_ptr<ITrain>> get_trains_on_rail() const;

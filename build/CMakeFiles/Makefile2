@@ -159,6 +159,7 @@ CMakeFiles/Train_Station.dir/clean:
 
 # All Build rule for target.
 CPP_SERVER/CMakeFiles/grpc_server.dir/all: CPP_SERVER/GRPC_CPP/CMakeFiles/GRPC_CPP_RAILWAY.dir/all
+CPP_SERVER/CMakeFiles/grpc_server.dir/all: railway/CMakeFiles/RailwayManager.dir/all
 	$(MAKE) $(MAKESILENT) -f CPP_SERVER/CMakeFiles/grpc_server.dir/build.make CPP_SERVER/CMakeFiles/grpc_server.dir/depend
 	$(MAKE) $(MAKESILENT) -f CPP_SERVER/CMakeFiles/grpc_server.dir/build.make CPP_SERVER/CMakeFiles/grpc_server.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/fuckoff/projects/coursework/build/CMakeFiles --progress-num=7,8 "Built target grpc_server"
@@ -166,7 +167,7 @@ CPP_SERVER/CMakeFiles/grpc_server.dir/all: CPP_SERVER/GRPC_CPP/CMakeFiles/GRPC_C
 
 # Build rule for subdir invocation for target.
 CPP_SERVER/CMakeFiles/grpc_server.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fuckoff/projects/coursework/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fuckoff/projects/coursework/build/CMakeFiles 6
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CPP_SERVER/CMakeFiles/grpc_server.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/fuckoff/projects/coursework/build/CMakeFiles 0
 .PHONY : CPP_SERVER/CMakeFiles/grpc_server.dir/rule
