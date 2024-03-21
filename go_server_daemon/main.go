@@ -1,7 +1,9 @@
-package httpserver_go
+package main
 
 import (
+	"context"
 	"fmt"
+	pb "http_railway_server/railway_grpc"
 	"io"
 	"log"
 	"mime"
@@ -9,9 +11,8 @@ import (
 	"os"
 	"strings"
 
-	pb "http_railway_server/railway_grpc"
-
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 )
 
 func reader(w http.ResponseWriter, r *http.Request) {
@@ -50,17 +51,24 @@ func reader(w http.ResponseWriter, r *http.Request) {
 }
 func main() {
 	var opts []grpc.DialOption
-	railway_server_ip := "localhost:50051"
+	railway_server_ip := "127.0.0.1:50051"
+	opts = append(opts, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	conn, err := grpc.Dial(*&railway_server_ip, opts...)
 	if err != nil {
-
+		log.Fatalf("fail to dial: %v", err)
 	}
 	defer conn.Close()
-	client := pb.NewRouteGuideClient(conn)
-	train, err := client.GetTrain(4)
-	if err == nil {
-		println(train.state)
+
+	client := pb.NewRailwayClient(conn)
+	request := pb.Train{}
+	request.Id = 5
+	train, err := client.GetTrain(context.Background(), &request)
+
+	if err != nil {
+		log.Fatalf("fail to dial: %v", err)
 	}
+	println(train.GetTrainState())
+
 	http.Handle("/image/", http.StripPrefix("/image/", http.FileServer(http.Dir("./site/image")))) //Image Fix...'''
 	http.HandleFunc("/", reader)
 	println("SERVER STARTED")

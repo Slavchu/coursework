@@ -1,6 +1,6 @@
 syntax="proto3";
 package GRPCRailway;
-option go_package = "railway.com/railway_grpc";
+option go_package = "http_railway_server/railway_grpc";
 service Railway{
     rpc GetRailwayState(Empty)  returns (RailwayState){};
     rpc GetTrain(Train) returns (Train){};
