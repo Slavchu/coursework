@@ -1,0 +1,5 @@
+add_subdirectory(GRPC_CPP)
+add_library(grpc_server grpc_server.cpp include/grpc_server.h)
+target_include_directories(grpc_server PUBLIC include)
+target_link_libraries(grpc_server GRPC_CPP_RAILWAY)
+target_link_libraries(grpc_server RailwayManager)
