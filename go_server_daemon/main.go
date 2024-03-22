@@ -23,7 +23,9 @@ func reader(w http.ResponseWriter, r *http.Request) {
 		var err error
 		if r.URL.Path == "/" {
 			file, err = os.ReadFile("site/index.html")
-			w.Header().Set("Content-Type", "text.html")
+			sliced := strings.Split(r.URL.Path, ".")
+			type_ := sliced[len(sliced)-1]
+			w.Header().Set("Content-Type", mime.TypeByExtension(type_))
 		} else {
 			file, err = os.ReadFile("site" + r.URL.Path)
 			sliced := strings.Split(r.URL.Path, ".")
@@ -37,6 +39,9 @@ func reader(w http.ResponseWriter, r *http.Request) {
 				log.Fatal("We fucked up")
 				os.Exit(-1)
 			}
+			sliced := strings.Split(r.URL.Path, ".")
+			type_ := sliced[len(sliced)-1]
+			w.Header().Set("Content-Type", mime.TypeByExtension(type_))
 		}
 		io.WriteString(w, string(file))
 
@@ -53,7 +58,7 @@ func main() {
 	var opts []grpc.DialOption
 	railway_server_ip := "127.0.0.1:50051"
 	opts = append(opts, grpc.WithTransportCredentials(insecure.NewCredentials()))
-	conn, err := grpc.Dial(*&railway_server_ip, opts...)
+	conn, err := grpc.Dial(railway_server_ip, opts...)
 	if err != nil {
 		log.Fatalf("fail to dial: %v", err)
 	}
