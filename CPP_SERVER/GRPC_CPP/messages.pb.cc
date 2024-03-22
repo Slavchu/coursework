@@ -132,14 +132,15 @@ const char descriptor_table_protodef_messages_2eproto[] PROTOBUF_SECTION_VARIABL
     "RIVED\020\002\022\016\n\nDEPARTURED\020\0032\203\001\n\007Railway\022B\n\017G"
     "etRailwayState\022\022.GRPCRailway.Empty\032\031.GRP"
     "CRailway.RailwayState\"\000\0224\n\010GetTrain\022\022.GR"
-    "PCRailway.Train\032\022.GRPCRailway.Train\"\000b\006p"
-    "roto3"
+    "PCRailway.Train\032\022.GRPCRailway.Train\"\000B\"Z"
+    " http_railway_server/railway_grpcb\006proto"
+    "3"
 };
 static ::absl::once_flag descriptor_table_messages_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_messages_2eproto = {
     false,
     false,
-    365,
+    401,
     descriptor_table_protodef_messages_2eproto,
     "messages.proto",
     &descriptor_table_messages_2eproto_once,

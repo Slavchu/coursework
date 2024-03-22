@@ -32,9 +32,9 @@ Server::Server(std::string ip, unsigned int port){
     RailwayService service;
     this->ip = ip;
     this->port = port;
+
     grpc::ServerBuilder builder;
     builder.AddListeningPort(ip+":"+std::to_string(port), grpc::InsecureServerCredentials());
-
     builder.RegisterService(&service);
     auto server = builder.BuildAndStart();
     std::cout << "Server Started!\n";
