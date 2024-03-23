@@ -143,6 +143,26 @@ void railway::VirtualTrain::update_params(){
 unsigned int railway::ITrain::get_id() const{
     return this->id;
 }
+unsigned int railway::ITrain::get_wagons() const
+{
+    return this->wagons;
+}
+std::time_t railway::ITrain::get_arriving_time() const
+{
+    return this->arriving_time;
+}
+std::string railway::ITrain::get_arriving_time_string() const //todo
+{
+    return std::string();
+}
+std::string railway::ITrain::get_train_name() const
+{
+    return train_name;
+}
+void railway::ITrain::set_train_name(const std::string &name){
+    train_name = name;
+}
+
 ETrainState railway::ITrain::get_state() const
 {
     return this->state;

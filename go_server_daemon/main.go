@@ -24,13 +24,13 @@ func reader(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path == "/" {
 			file, err = os.ReadFile("site/index.html")
 			sliced := strings.Split(r.URL.Path, ".")
-			type_ := sliced[len(sliced)-1]
-			w.Header().Set("Content-Type", mime.TypeByExtension(type_))
+			doc_type := sliced[len(sliced)-1]
+			w.Header().Set("Content-Type", mime.TypeByExtension("."+doc_type))
 		} else {
 			file, err = os.ReadFile("site" + r.URL.Path)
 			sliced := strings.Split(r.URL.Path, ".")
-			type_ := sliced[len(sliced)-1]
-			w.Header().Set("Content-Type", mime.TypeByExtension(type_)) //Fix mime type
+			doc_type := sliced[len(sliced)-1]
+			w.Header().Set("Content-Type", mime.TypeByExtension("."+doc_type)) //Fix mime type
 		}
 		if err != nil {
 
@@ -40,8 +40,8 @@ func reader(w http.ResponseWriter, r *http.Request) {
 				os.Exit(-1)
 			}
 			sliced := strings.Split(r.URL.Path, ".")
-			type_ := sliced[len(sliced)-1]
-			w.Header().Set("Content-Type", mime.TypeByExtension(type_))
+			doc_type := sliced[len(sliced)-1]
+			w.Header().Set("Content-Type", mime.TypeByExtension("."+doc_type))
 		}
 		io.WriteString(w, string(file))
 
@@ -55,6 +55,7 @@ func reader(w http.ResponseWriter, r *http.Request) {
 
 }
 func main() {
+
 	var opts []grpc.DialOption
 	railway_server_ip := "127.0.0.1:50051"
 	opts = append(opts, grpc.WithTransportCredentials(insecure.NewCredentials()))
@@ -72,7 +73,8 @@ func main() {
 	if err != nil {
 		log.Fatalf("fail to dial: %v", err)
 	}
-	println(train.GetTrainState())
+	println(train)
+	println(mime.TypeByExtension("js"))
 
 	http.Handle("/image/", http.StripPrefix("/image/", http.FileServer(http.Dir("./site/image")))) //Image Fix...'''
 	http.HandleFunc("/", reader)

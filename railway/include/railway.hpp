@@ -40,6 +40,11 @@ namespace railway{
         std::string train_name;
         public:
         unsigned int get_id() const;
+        unsigned int get_wagons () const;
+        std::time_t get_arriving_time() const;
+        std::string get_arriving_time_string() const;
+        std::string get_train_name() const;
+        void set_train_name(const std::string &name);
         ETrainState get_state() const;
         
         ITrain();
