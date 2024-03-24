@@ -127,7 +127,7 @@ void railway::VirtualTrain::tick(){
 }
 
 railway::VirtualTrain::VirtualTrain(unsigned int wagons, unsigned int time_to_arrive){
-    
+    this->train_name = "Virtual";
     this->id = 0;
     this->wagons = wagons;
     this->time_for_road = time_to_arrive;
