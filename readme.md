@@ -6,6 +6,7 @@
     <li>GO</li>
     <li>STL</li>
     <li>gRPC</li>
+    <li>REST api</li>
     <li>Multithreading</li>
     
 </ul>
