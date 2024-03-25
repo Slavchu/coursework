@@ -4,6 +4,9 @@ option go_package = "http_railway_server/railway_grpc";
 service Railway{
     rpc GetRailwayState(Empty)  returns (RailwayState){};
     rpc GetTrain(Train) returns (Train){};
+    rpc GetTrainInQueue(Empty) returns (TrainArray){};
+    rpc GetAllTrain(Empty) returns (TrainArray){};
+    rpc GetTrainOnRail(Empty) returns (TrainArray){};
 
 }
 enum ETrainState{
@@ -13,6 +16,9 @@ enum ETrainState{
     DEPARTURED = 3;
 
 }
+message TrainArray{
+    repeated Train train_array = 1;
+};
 message Train{
     uint32 id = 1;
     string name = 2;

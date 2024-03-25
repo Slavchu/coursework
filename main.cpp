@@ -8,7 +8,6 @@ int main(){
     time_t current_time = time(0);
     std::cout << "CURRENT TIME"<< ctime(&current_time) << std::endl;
     railway::RailwayStation Railway (5);
-
     for(int i = 0; i < 50; i++)
         Railway.register_train(std::make_shared<railway::VirtualTrain>(rand()%20+5, rand()%20+5));
     

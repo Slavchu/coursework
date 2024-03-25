@@ -1,10 +1,12 @@
 cmake_minimum_required(VERSION 3.14)
 project(Train_Station)
-
-
+set (EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/bin)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/go_server_daemon/main ${CMAKE_CURRENT_SOURCE_DIR}/bin/http_server COPYONLY)
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/go_server_daemon/site DESTINATION "${CMAKE_CURRENT_SOURCE_DIR}/bin")
 add_executable(Train_Station main.cpp)
 add_subdirectory(CPP_SERVER)
 add_subdirectory(railway)
+
 target_link_libraries(Train_Station RailwayManager)
 target_link_libraries(Train_Station grpc_server)
 target_link_libraries(grpc_server RailwayManager)

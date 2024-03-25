@@ -42,6 +42,52 @@ func rest_request(w http.ResponseWriter, r *http.Request) {
 			w.Write(answer)
 			return
 		}
+		if r.URL.Path == "/rest/get_all_trains" {
+			trains, err := client.GetAllTrain(context.Background(), &pb.Empty{})
+
+			if err != nil {
+				io.WriteString(w, "{\"error\" : true}")
+				return
+			}
+
+			answer, err := json.Marshal(trains)
+			if err != nil {
+				io.WriteString(w, "{\"error\" : true}")
+				return
+			}
+			w.Write(answer)
+			return
+		}
+		if r.URL.Path == "/rest/get_trains_in_queue" {
+			trains, err := client.GetTrainInQueue(context.Background(), &pb.Empty{})
+			if err != nil {
+				io.WriteString(w, "{\"error\" : true}")
+				return
+			}
+
+			answer, err := json.Marshal(trains)
+			if err != nil {
+				io.WriteString(w, "{\"error\" : true}")
+				return
+			}
+			w.Write(answer)
+			return
+		}
+		if r.URL.Path == "/rest/get_trains_on_rail" {
+			trains, err := client.GetTrainOnRail(context.Background(), &pb.Empty{})
+			if err != nil {
+				io.WriteString(w, "{\"error\" : true}")
+				return
+			}
+
+			answer, err := json.Marshal(trains)
+			if err != nil {
+				io.WriteString(w, "{\"error\" : true}")
+				return
+			}
+			w.Write(answer)
+			return
+		}
 		if strings.Contains(r.URL.Path, "get_train") {
 			request_body := strings.Split(r.URL.Path, "/")
 			id, err := strconv.Atoi(request_body[len(request_body)-1])

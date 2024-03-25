@@ -22,8 +22,8 @@ async function main() {
     console.log(railway_state)
     let rail_num = railway_state["rail_num"]
     console.log(rail_num)
-    update_canvas( rail_num, railway_state["trains"] );
-    
+    update_canvas( rail_num, railway_state["trains"]);
+        
 
 }
 main()

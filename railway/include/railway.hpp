@@ -1,6 +1,6 @@
 #include <set>
 #include <string>
-#include <queue>
+#include <deque>
 #include <vector>
 #include <memory>
 #include <ctime>
@@ -62,7 +62,7 @@ namespace railway{
     
     class RailwayStation{
         int rail_num;
-        std::queue <std::shared_ptr<ITrain>> train_queue;
+        std::deque <std::shared_ptr<ITrain>> train_queue;
         std::vector <std::shared_ptr<ITrain>> rails;
         std::map<unsigned int,std::shared_ptr<ITrain>> trains;
         static RailwayStation * station_instance;
@@ -76,7 +76,7 @@ namespace railway{
         int get_rail_num() const;
         int get_train_queue_size() const;
         std::vector<std::shared_ptr<ITrain>> get_all_trains() const;
-
+        std::vector<std::shared_ptr<ITrain>> get_trains_in_queue() const ;
         std::vector<std::shared_ptr<ITrain>> get_trains_on_rail() const;
         static RailwayStation * get_instance();
         void register_train(std::shared_ptr<ITrain> train);        

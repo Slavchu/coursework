@@ -36,6 +36,54 @@
     return ::grpc::Status::OK;
 }
 
+::grpc::Status RailwayService::GetTrainInQueue(::grpc::ServerContext *context, const ::GRPCRailway::Empty *request, ::GRPCRailway::TrainArray *response)
+{
+    if(!railway::RailwayStation::get_instance()) return ::grpc::Status::CANCELLED;
+    auto all_in_queue = railway::RailwayStation::get_instance()->get_trains_in_queue();
+
+    for(auto &it : all_in_queue){
+        
+        auto res = response->add_train_array();
+        res->set_id( it->get_id());
+        res->set_name(it->get_train_name());
+        res->set_train_state((::GRPCRailway::ETrainState)it->get_state());
+        res->set_wagons(it->get_wagons());
+    }
+    return ::grpc::Status::OK;
+}
+
+::grpc::Status RailwayService::GetAllTrain(::grpc::ServerContext *context, const ::GRPCRailway::Empty *request, ::GRPCRailway::TrainArray *response)
+{
+    if(!railway::RailwayStation::get_instance()) return ::grpc::Status::CANCELLED;
+    auto all_trains = railway::RailwayStation::get_instance()->get_all_trains();
+    for(auto &it : all_trains){
+        
+        auto res = response->add_train_array();
+        res->set_id( it->get_id());
+        res->set_name(it->get_train_name());
+        res->set_train_state((::GRPCRailway::ETrainState)it->get_state());
+        res->set_wagons(it->get_wagons());
+    }
+    return ::grpc::Status::OK;
+}
+
+::grpc::Status RailwayService::GetTrainOnRail(::grpc::ServerContext *context, const ::GRPCRailway::Empty *request, ::GRPCRailway::TrainArray *response)
+{
+    if(!railway::RailwayStation::get_instance()) return ::grpc::Status::CANCELLED;
+    auto all_on_rail = railway::RailwayStation::get_instance()->get_trains_on_rail();
+    for(auto &it : all_on_rail){
+        if(it){
+            auto res = response->add_train_array();
+            res->set_id( it->get_id());
+            res->set_name(it->get_train_name());
+            res->set_train_state((::GRPCRailway::ETrainState)it->get_state());
+            res->set_wagons(it->get_wagons());
+        }
+        
+    }
+    return ::grpc::Status::OK;
+}
+
 Server::Server(std::string ip, unsigned int port){
     RailwayService service;
     this->ip = ip;

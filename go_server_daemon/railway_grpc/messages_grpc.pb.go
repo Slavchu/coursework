@@ -24,6 +24,9 @@ const _ = grpc.SupportPackageIsVersion7
 type RailwayClient interface {
 	GetRailwayState(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*RailwayState, error)
 	GetTrain(ctx context.Context, in *Train, opts ...grpc.CallOption) (*Train, error)
+	GetTrainInQueue(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TrainArray, error)
+	GetAllTrain(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TrainArray, error)
+	GetTrainOnRail(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TrainArray, error)
 }
 
 type railwayClient struct {
@@ -52,12 +55,42 @@ func (c *railwayClient) GetTrain(ctx context.Context, in *Train, opts ...grpc.Ca
 	return out, nil
 }
 
+func (c *railwayClient) GetTrainInQueue(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TrainArray, error) {
+	out := new(TrainArray)
+	err := c.cc.Invoke(ctx, "/GRPCRailway.Railway/GetTrainInQueue", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *railwayClient) GetAllTrain(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TrainArray, error) {
+	out := new(TrainArray)
+	err := c.cc.Invoke(ctx, "/GRPCRailway.Railway/GetAllTrain", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *railwayClient) GetTrainOnRail(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TrainArray, error) {
+	out := new(TrainArray)
+	err := c.cc.Invoke(ctx, "/GRPCRailway.Railway/GetTrainOnRail", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // RailwayServer is the server API for Railway service.
 // All implementations must embed UnimplementedRailwayServer
 // for forward compatibility
 type RailwayServer interface {
 	GetRailwayState(context.Context, *Empty) (*RailwayState, error)
 	GetTrain(context.Context, *Train) (*Train, error)
+	GetTrainInQueue(context.Context, *Empty) (*TrainArray, error)
+	GetAllTrain(context.Context, *Empty) (*TrainArray, error)
+	GetTrainOnRail(context.Context, *Empty) (*TrainArray, error)
 	mustEmbedUnimplementedRailwayServer()
 }
 
@@ -70,6 +103,15 @@ func (UnimplementedRailwayServer) GetRailwayState(context.Context, *Empty) (*Rai
 }
 func (UnimplementedRailwayServer) GetTrain(context.Context, *Train) (*Train, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTrain not implemented")
+}
+func (UnimplementedRailwayServer) GetTrainInQueue(context.Context, *Empty) (*TrainArray, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTrainInQueue not implemented")
+}
+func (UnimplementedRailwayServer) GetAllTrain(context.Context, *Empty) (*TrainArray, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAllTrain not implemented")
+}
+func (UnimplementedRailwayServer) GetTrainOnRail(context.Context, *Empty) (*TrainArray, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTrainOnRail not implemented")
 }
 func (UnimplementedRailwayServer) mustEmbedUnimplementedRailwayServer() {}
 
@@ -120,6 +162,60 @@ func _Railway_GetTrain_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Railway_GetTrainInQueue_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RailwayServer).GetTrainInQueue(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/GRPCRailway.Railway/GetTrainInQueue",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RailwayServer).GetTrainInQueue(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Railway_GetAllTrain_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RailwayServer).GetAllTrain(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/GRPCRailway.Railway/GetAllTrain",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RailwayServer).GetAllTrain(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Railway_GetTrainOnRail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RailwayServer).GetTrainOnRail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/GRPCRailway.Railway/GetTrainOnRail",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RailwayServer).GetTrainOnRail(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Railway_ServiceDesc is the grpc.ServiceDesc for Railway service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -134,6 +230,18 @@ var Railway_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTrain",
 			Handler:    _Railway_GetTrain_Handler,
+		},
+		{
+			MethodName: "GetTrainInQueue",
+			Handler:    _Railway_GetTrainInQueue_Handler,
+		},
+		{
+			MethodName: "GetAllTrain",
+			Handler:    _Railway_GetAllTrain_Handler,
+		},
+		{
+			MethodName: "GetTrainOnRail",
+			Handler:    _Railway_GetTrainOnRail_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

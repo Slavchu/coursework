@@ -82,6 +82,10 @@ a{
     border-radius: 5px;
 }
 
+.TrainList table th:nth-child(4){
+    text-align: right;
+}
+
 
 .LowerBorder{
     margin: 0;

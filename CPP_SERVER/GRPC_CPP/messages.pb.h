@@ -67,6 +67,9 @@ extern RailwayStateDefaultTypeInternal _RailwayState_default_instance_;
 class Train;
 struct TrainDefaultTypeInternal;
 extern TrainDefaultTypeInternal _Train_default_instance_;
+class TrainArray;
+struct TrainArrayDefaultTypeInternal;
+extern TrainArrayDefaultTypeInternal _TrainArray_default_instance_;
 }  // namespace GRPCRailway
 namespace google {
 namespace protobuf {
@@ -174,7 +177,7 @@ class Train final :
                &_Train_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    1;
 
   friend void swap(Train& a, Train& b) {
     a.Swap(&b);
@@ -390,7 +393,7 @@ class Empty final :
                &_Empty_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    3;
 
   friend void swap(Empty& a, Empty& b) {
     a.Swap(&b);
@@ -468,6 +471,189 @@ class Empty final :
   friend struct ::TableStruct_messages_2eproto;
 };// -------------------------------------------------------------------
 
+class TrainArray final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:GRPCRailway.TrainArray) */ {
+ public:
+  inline TrainArray() : TrainArray(nullptr) {}
+  ~TrainArray() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR TrainArray(::google::protobuf::internal::ConstantInitialized);
+
+  inline TrainArray(const TrainArray& from)
+      : TrainArray(nullptr, from) {}
+  TrainArray(TrainArray&& from) noexcept
+    : TrainArray() {
+    *this = ::std::move(from);
+  }
+
+  inline TrainArray& operator=(const TrainArray& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TrainArray& operator=(TrainArray&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const TrainArray& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const TrainArray* internal_default_instance() {
+    return reinterpret_cast<const TrainArray*>(
+               &_TrainArray_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    0;
+
+  friend void swap(TrainArray& a, TrainArray& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TrainArray* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(TrainArray* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  TrainArray* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<TrainArray>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const TrainArray& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const TrainArray& from) {
+    TrainArray::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(TrainArray* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "GRPCRailway.TrainArray";
+  }
+  protected:
+  explicit TrainArray(::google::protobuf::Arena* arena);
+  TrainArray(::google::protobuf::Arena* arena, const TrainArray& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTrainArrayFieldNumber = 1,
+  };
+  // repeated .GRPCRailway.Train train_array = 1;
+  int train_array_size() const;
+  private:
+  int _internal_train_array_size() const;
+
+  public:
+  void clear_train_array() ;
+  ::GRPCRailway::Train* mutable_train_array(int index);
+  ::google::protobuf::RepeatedPtrField< ::GRPCRailway::Train >*
+      mutable_train_array();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::GRPCRailway::Train>& _internal_train_array() const;
+  ::google::protobuf::RepeatedPtrField<::GRPCRailway::Train>* _internal_mutable_train_array();
+  public:
+  const ::GRPCRailway::Train& train_array(int index) const;
+  ::GRPCRailway::Train* add_train_array();
+  const ::google::protobuf::RepeatedPtrField< ::GRPCRailway::Train >&
+      train_array() const;
+  // @@protoc_insertion_point(class_scope:GRPCRailway.TrainArray)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 1,
+      0, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::RepeatedPtrField< ::GRPCRailway::Train > train_array_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_messages_2eproto;
+};// -------------------------------------------------------------------
+
 class RailwayState final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:GRPCRailway.RailwayState) */ {
  public:
@@ -527,7 +713,7 @@ class RailwayState final :
                &_RailwayState_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    2;
 
   friend void swap(RailwayState& a, RailwayState& b) {
     a.Swap(&b);
@@ -675,6 +861,59 @@ class RailwayState final :
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// TrainArray
+
+// repeated .GRPCRailway.Train train_array = 1;
+inline int TrainArray::_internal_train_array_size() const {
+  return _internal_train_array().size();
+}
+inline int TrainArray::train_array_size() const {
+  return _internal_train_array_size();
+}
+inline void TrainArray::clear_train_array() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.train_array_.Clear();
+}
+inline ::GRPCRailway::Train* TrainArray::mutable_train_array(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:GRPCRailway.TrainArray.train_array)
+  return _internal_mutable_train_array()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::GRPCRailway::Train>* TrainArray::mutable_train_array()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:GRPCRailway.TrainArray.train_array)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_train_array();
+}
+inline const ::GRPCRailway::Train& TrainArray::train_array(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:GRPCRailway.TrainArray.train_array)
+  return _internal_train_array().Get(index);
+}
+inline ::GRPCRailway::Train* TrainArray::add_train_array() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::GRPCRailway::Train* _add = _internal_mutable_train_array()->Add();
+  // @@protoc_insertion_point(field_add:GRPCRailway.TrainArray.train_array)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::GRPCRailway::Train>& TrainArray::train_array() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:GRPCRailway.TrainArray.train_array)
+  return _internal_train_array();
+}
+inline const ::google::protobuf::RepeatedPtrField<::GRPCRailway::Train>&
+TrainArray::_internal_train_array() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.train_array_;
+}
+inline ::google::protobuf::RepeatedPtrField<::GRPCRailway::Train>*
+TrainArray::_internal_mutable_train_array() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.train_array_;
+}
+
 // -------------------------------------------------------------------
 
 // Train

@@ -41,7 +41,7 @@ void railway::RailwayStation::train_event(const unsigned int &train_id, const ET
             std::cout << "Train in QUEUE.\n";
             auto train = trains[train_id];
             train->state = ETrainState::IN_QUEUE;
-            train_queue.push(train);
+            train_queue.push_back(train);
             io_mutex.unlock();
             train_mutex.unlock();
             break;
@@ -56,7 +56,7 @@ void railway::RailwayStation::train_event(const unsigned int &train_id, const ET
                     it=NULL;
                     if(!train_queue.empty()){
                         it = train_queue.front();
-                        train_queue.pop();
+                        train_queue.pop_front();
                         it->state = ETrainState::ARRIVED;
                     }
                 }
@@ -96,6 +96,16 @@ std::vector<std::shared_ptr<ITrain>> railway::RailwayStation::get_all_trains() c
     std::vector <std::shared_ptr<ITrain>> trains;
     for(auto it: this->trains){
         trains.push_back(it.second);
+    }
+
+    return trains;
+}
+
+std::vector<std::shared_ptr<ITrain>> railway::RailwayStation::get_trains_in_queue() const
+{
+    std::vector <std::shared_ptr<ITrain>> trains;
+    for(auto it: train_queue){
+        trains.push_back(it);
     }
 
     return trains;
