@@ -6,13 +6,6 @@ service Railway{
     rpc GetTrain(Train) returns (Train){};
 
 }
-message RailwayState{
-    uint32 rail_num = 1;
-    repeated uint32 id = 2;
-}
-message Empty{
-
-}
 enum ETrainState{
     IN_TRIP = 0;
     IN_QUEUE = 1;
@@ -22,6 +15,15 @@ enum ETrainState{
 }
 message Train{
     uint32 id = 1;
-    ETrainState train_state = 2;
+    string name = 2;
+    uint32 wagons = 3;
+    ETrainState train_state = 4;
+
+}
+message RailwayState{
+    uint32 rail_num = 1;
+    repeated Train trains = 2;
+}
+message Empty{
 
 }

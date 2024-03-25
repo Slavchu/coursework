@@ -12,11 +12,19 @@
     if(!railway::RailwayStation::get_instance()) return ::grpc::Status::CANCELLED;
     response->set_rail_num(railway::RailwayStation::get_instance()->get_rail_num());
     auto rails = railway::RailwayStation::get_instance()->get_trains_on_rail();
+    
     for(auto it : rails)
-        if(it)
-            response->add_id(it->get_id());
-        else 
-            response->add_id(0);
+        if(it){
+            auto train = it;
+            auto trains = response->add_trains();
+            trains->set_name(train->get_train_name());
+            trains->set_train_state((::GRPCRailway::ETrainState) train->get_state());
+            trains->set_id(train->get_id());
+            trains->set_wagons(train->get_wagons());
+        }
+        else{ 
+            response->add_trains()->set_id(0);
+        }
     return ::grpc::Status::OK;
 }
 

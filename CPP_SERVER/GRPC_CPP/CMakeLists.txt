@@ -10,6 +10,7 @@ add_custom_command(
         -I "${CMAKE_CURRENT_SOURCE_DIR}/../../protobufs" 
         "--plugin=protoc-gen-grpc=/usr/bin/grpc_cpp_plugin"
         --grpc_out="${CMAKE_CURRENT_SOURCE_DIR}"
+        --cpp_out="${CMAKE_CURRENT_SOURCE_DIR}"
         "${CMAKE_CURRENT_SOURCE_DIR}/../../protobufs/messages.proto" 
     DEPENDS "../../protobufs/messages.proto"
 )

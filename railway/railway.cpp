@@ -7,12 +7,14 @@
 using namespace railway;
 
 std::mutex io_mutex;
-
+std::mutex train_mutex;
 RailwayStation*  RailwayStation::station_instance = 0;
 std::atomic<unsigned int> RailwayStation::id_counter = 0;
 
 railway::RailwayStation::RailwayStation(const int &rail_num){
     if(station_instance) return;
+    this->rail_num = rail_num;
+    std::cout << "Rail num:" << rail_num << std::endl;
     station_instance = this;
     rails.resize(rail_num);
     id_counter = 0;
@@ -22,6 +24,8 @@ railway::RailwayStation::RailwayStation(const int &rail_num){
 void railway::RailwayStation::train_event(const unsigned int &train_id, const ETrainEvent &train_event){
     io_mutex.lock();
     std::cout << "Registred event. \tTRAIN_ID:" << std::setw(5) << train_id << "\tEVENT:";
+    train_mutex.lock();
+
     switch(train_event){    
         case ETrainEvent::TRAIN_ARRIVED:{
             std::cout << "TRAIN_ARRIVED\n";
@@ -29,8 +33,8 @@ void railway::RailwayStation::train_event(const unsigned int &train_id, const ET
                 if(it == NULL){
                     it=trains[train_id];
                     it->state= ETrainState::ARRIVED;
+                    train_mutex.unlock();
                     io_mutex.unlock();
-
                     return;
                 }
             }
@@ -39,30 +43,35 @@ void railway::RailwayStation::train_event(const unsigned int &train_id, const ET
             train->state = ETrainState::IN_QUEUE;
             train_queue.push(train);
             io_mutex.unlock();
-
+            train_mutex.unlock();
             break;
         }
         case ETrainEvent::TRAIN_DEPARTURING:{
             std::cout << "TRAIN_DEPARTURING\n";
             io_mutex.unlock();
             for(auto &it : rails){
-                if(it == NULL){
-                    
+                
+                if(it && it->id == train_id ){    
                     it->state= ETrainState::DEPARTURED;
-                    
-                    it = train_queue.front();
-                    train_queue.pop();
-                    it->state = ETrainState::ARRIVED;
+                    it=NULL;
+                    if(!train_queue.empty()){
+                        it = train_queue.front();
+                        train_queue.pop();
+                        it->state = ETrainState::ARRIVED;
+                    }
                 }
             }
+            train_mutex.unlock();
             break;
         }
         case ETrainEvent::TRAIN_LATE:{
             std::cout << "TRAIN_LATE\n";
             io_mutex.unlock();
+            train_mutex.unlock();
             break;
         }
         default:{
+            train_mutex.unlock();
             io_mutex.unlock();
         }
     }
@@ -81,6 +90,15 @@ int railway::RailwayStation::get_rail_num() const{
 
 int railway::RailwayStation::get_train_queue_size() const{
     return train_queue.size();
+}
+
+std::vector<std::shared_ptr<ITrain>> railway::RailwayStation::get_all_trains() const{
+    std::vector <std::shared_ptr<ITrain>> trains;
+    for(auto it: this->trains){
+        trains.push_back(it.second);
+    }
+
+    return trains;
 }
 
 std::vector<std::shared_ptr<ITrain>> railway::RailwayStation::get_trains_on_rail() const{

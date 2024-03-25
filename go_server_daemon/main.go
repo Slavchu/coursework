@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	pb "http_railway_server/railway_grpc"
 	"io"
@@ -9,18 +10,72 @@ import (
 	"mime"
 	"net/http"
 	"os"
+	"strconv"
 	"strings"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )
 
+var client pb.RailwayClient
+
+func rest_request(w http.ResponseWriter, r *http.Request) {
+	println("rest request:" + r.URL.Path)
+
+	w.Header().Set("Contetnt-Type", "application/json")
+	switch r.Method {
+	case "GET":
+		if r.URL.Path == "/rest/get_railway_state" {
+
+			railway, err := client.GetRailwayState(context.Background(), &pb.Empty{})
+
+			if err != nil {
+				io.WriteString(w, "{\"error\" : true}")
+				return
+			}
+			println(railway.RailNum)
+			answer, err := json.Marshal(railway)
+			if err != nil {
+				io.WriteString(w, "{\"error\" : true}")
+				return
+			}
+			w.Write(answer)
+			return
+		}
+		if strings.Contains(r.URL.Path, "get_train") {
+			request_body := strings.Split(r.URL.Path, "/")
+			id, err := strconv.Atoi(request_body[len(request_body)-1])
+			if err != nil {
+				io.WriteString(w, "{\"error\" : true}")
+				return
+			}
+			request := pb.Train{}
+			request.Id = uint32(id)
+			train, err := client.GetTrain(context.Background(), &request)
+			if err != nil {
+				io.WriteString(w, "{\"error\" : true}")
+				return
+			}
+			answer, err := json.Marshal(train)
+			if err != nil {
+				io.WriteString(w, "{\"error\" : true}")
+				return
+			}
+			w.Write(answer)
+			return
+		}
+
+		io.WriteString(w, "{\"error\" : true}")
+		return
+	}
+}
 func reader(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":
 		println("New get request:" + r.URL.Path)
 		var file []byte
 		var err error
+
 		if r.URL.Path == "/" {
 			file, err = os.ReadFile("site/index.html")
 			sliced := strings.Split(r.URL.Path, ".")
@@ -65,19 +120,10 @@ func main() {
 	}
 	defer conn.Close()
 
-	client := pb.NewRailwayClient(conn)
-	request := pb.Train{}
-	request.Id = 5
-	train, err := client.GetTrain(context.Background(), &request)
+	client = pb.NewRailwayClient(conn)
 
-	if err != nil {
-		log.Fatalf("fail to dial: %v", err)
-	}
-	println(train)
-	println(mime.TypeByExtension("js"))
-
-	http.Handle("/image/", http.StripPrefix("/image/", http.FileServer(http.Dir("./site/image")))) //Image Fix...'''
 	http.HandleFunc("/", reader)
+	http.HandleFunc("/rest/", rest_request)
 	println("SERVER STARTED")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 

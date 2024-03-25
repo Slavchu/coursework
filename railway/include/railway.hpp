@@ -75,6 +75,8 @@ namespace railway{
         std::shared_ptr<ITrain> get_train_by_id(unsigned int id);
         int get_rail_num() const;
         int get_train_queue_size() const;
+        std::vector<std::shared_ptr<ITrain>> get_all_trains() const;
+
         std::vector<std::shared_ptr<ITrain>> get_trains_on_rail() const;
         static RailwayStation * get_instance();
         void register_train(std::shared_ptr<ITrain> train);        

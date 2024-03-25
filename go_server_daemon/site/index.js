@@ -1,15 +1,13 @@
+async function rest_request( request) {
+    response = await fetch("/rest/" + request, { mode: "no-cors" })
+    return response.json();
+}
 
-/*async function simple_get_request(){
-    let response = await fetch("/RAILWAY_REQUEST/get_railway_state",
-      {method :"GET"})
-    if(response.ok){
-        console.log = response.json()
-}
-}
-*/
-let rail_num = 4;
+
 let rail_width = 5
 let field = document.getElementsByClassName("RailwayField")
+let rail_positions;
+
 
 let canvas = document.querySelector('canvas')
 
@@ -17,18 +15,36 @@ canvas.width = window.innerWidth
 canvas.height = window.innerHeight
 let c = canvas.getContext('2d')
 console.log(canvas.width, " ", canvas.height)
-let rail_positions;
-update_canvas();
-console.log(rail_positions)
+
+async function main() {
+    
+    let railway_state = await rest_request("get_railway_state")
+    console.log(railway_state)
+    let rail_num = railway_state["rail_num"]
+    console.log(rail_num)
+    update_canvas( rail_num, railway_state["trains"] );
+    
+
+}
+main()
+setInterval(main, 1000)
 
 
 
 
 
-function update_canvas(){
+function update_canvas(rail_num, trains){
+    
+    console.log("update_canvas")
     c.clearRect(0, 0, canvas.width, canvas.height);
     rail_positions = render_rails(rail_num, rail_width)
-    render_train("some name", "213", Math.floor(Math.random()*20)+1, Math.floor(Math.random()*rail_num) );
+    for(integer = 0; integer < rail_num; integer++){
+        if(trains[integer]["id"] > 0)
+        
+            render_train(trains[integer]["name"], trains[integer]["id"], trains[integer]["wagons"], integer);
+        //console.log(integer);
+    }
+
 }
 
 function render_train(name, id, wagons, rail){
