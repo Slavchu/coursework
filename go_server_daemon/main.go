@@ -23,6 +23,10 @@ type VirtualTrainTemplate struct {
 	Time_interval_max string
 	Time_to_stay      string
 }
+type GrpcServerConf struct {
+	GRPC_server_ip string
+	HTTP_server_ip string
+}
 
 var client pb.RailwayClient
 
@@ -201,9 +205,17 @@ func reader(w http.ResponseWriter, r *http.Request) {
 func main() {
 
 	var opts []grpc.DialOption
-	railway_server_ip := "127.0.0.1:50051"
+	var server_conf GrpcServerConf
+	server_conf.GRPC_server_ip = "127.0.0.1:50051"
+	server_conf.HTTP_server_ip = ":8080"
+	conf_file, err := os.ReadFile("http_server_config.json")
+	if err == nil {
+		json.Unmarshal(conf_file, &server_conf)
+	} else {
+		println("No http_server_config.json file found. using default options. Http server ip 127.0.0.1:8080; GRPC server ip 127.0.0.1:50051")
+	}
 	opts = append(opts, grpc.WithTransportCredentials(insecure.NewCredentials()))
-	conn, err := grpc.Dial(railway_server_ip, opts...)
+	conn, err := grpc.Dial(server_conf.GRPC_server_ip, opts...)
 	if err != nil {
 		log.Fatalf("fail to dial: %v", err)
 	}

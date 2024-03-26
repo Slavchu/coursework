@@ -1,18 +1,34 @@
 #include <iostream>
 #include <railway.hpp>
 #include <grpc_server.h>
-
+#include <fstream>
 
 int main(){
+    std::string ip = "0.0.0.0";
+    unsigned int port = 50051;
+    std::ifstream server_conf("server.config");
+    if(server_conf.is_open()){
+        server_conf >> ip;
+        server_conf >> port;
+    }
+    else{
+        std::cout << "server.config not found. Running grpc server on 0.0.0.0:50051\n";
+    }
+    Server(ip, port);
     srand(time(0));
-    time_t current_time = time(0);
-    std::cout << "CURRENT TIME"<< ctime(&current_time) << std::endl;
-    railway::RailwayStation Railway (5);
-    for(int i = 0; i < 50; i++)
-        Railway.register_train(std::make_shared<railway::VirtualTrain>(rand()%20+5, rand()%20+5));
+    unsigned int rails = 5;
+    std::ifstream railway_conf("railway.config");
+    if(railway_conf.is_open()){
+        railway_conf >> rails;
+    }
+    else{
+        std::cout << "server.config not found. Railway will have default params\n";
+    }
+    railway::RailwayStation Railway (rails);
     
-    Server("127.0.0.1", 50051);
     
+    
+
     return 0;
 
 }
