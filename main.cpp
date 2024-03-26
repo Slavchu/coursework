@@ -4,6 +4,16 @@
 #include <fstream>
 
 int main(){
+    unsigned int rails = 5;
+
+    std::ifstream railway_conf("railway.config");
+    if(railway_conf.is_open()){
+        railway_conf >> rails;
+    }
+    else{
+        std::cout << "server.config not found. Railway will have default params\n";
+    }
+    railway::RailwayStation Railway (rails);
     std::string ip = "0.0.0.0";
     unsigned int port = 50051;
     std::ifstream server_conf("server.config");
@@ -16,15 +26,7 @@ int main(){
     }
     Server(ip, port);
     srand(time(0));
-    unsigned int rails = 5;
-    std::ifstream railway_conf("railway.config");
-    if(railway_conf.is_open()){
-        railway_conf >> rails;
-    }
-    else{
-        std::cout << "server.config not found. Railway will have default params\n";
-    }
-    railway::RailwayStation Railway (rails);
+   
     
     
     
