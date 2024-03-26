@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Railway console</title>  
+
+    <link rel="stylesheet" type="text/css" href="console.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway+Dots&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    
+</head>
+
+<body>
+
+    
+    <div class="header">
+        <ul>
+            <li><a href="/TrainList/trainlist.html">TrainList</a> </li>
+            <li><a href="/index.html">Information Panel</a></li>
+            <li><a href="https://github.com/Slavchu">Github</a></li>
+        </ul>
+    </div> 
+   
+   
+    <div class="console">
+        <form  id="virtual_train_form">
+            <p>Train number:</p>
+            <input type="number" name="train_num" required min="1"  placeholder="train num (1-n)"/>
+            <p>Minimum arriving time:</p>
+            <input type="number" name="time_interval_min" required min="1"  placeholder="time interval min" value="10"/>
+            <p>Maximum arriving number:</p>
+            <input type="number" name="time_interval_max" required min="1"  placeholder="time interval max" value="40"/>
+            <p>Time to stay:</p>
+            <input parse type="number" name="time_to_stay" required min="1"  placeholder="time to_stay seconds" value="10"/>
+            <button type="submit" >Add virtual train</button>
+
+        </form>
+    </div>
+
+    
+    <div class="LowerBorder">
+
+
+        <p>Railway station coursework NULP 2024</p>
+       
+    </div>
+    <script src="console.js"></script>
+    
+    
+</body>
+
+</html>
