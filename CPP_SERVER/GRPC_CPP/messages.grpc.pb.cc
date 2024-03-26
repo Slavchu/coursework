@@ -27,6 +27,7 @@ static const char* Railway_method_names[] = {
   "/GRPCRailway.Railway/GetTrainInQueue",
   "/GRPCRailway.Railway/GetAllTrain",
   "/GRPCRailway.Railway/GetTrainOnRail",
+  "/GRPCRailway.Railway/AddVirtualTrains",
 };
 
 std::unique_ptr< Railway::Stub> Railway::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -41,6 +42,7 @@ Railway::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, c
   , rpcmethod_GetTrainInQueue_(Railway_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetAllTrain_(Railway_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetTrainOnRail_(Railway_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_AddVirtualTrains_(Railway_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status Railway::Stub::GetRailwayState(::grpc::ClientContext* context, const ::GRPCRailway::Empty& request, ::GRPCRailway::RailwayState* response) {
@@ -158,6 +160,29 @@ void Railway::Stub::async::GetTrainOnRail(::grpc::ClientContext* context, const 
   return result;
 }
 
+::grpc::Status Railway::Stub::AddVirtualTrains(::grpc::ClientContext* context, const ::GRPCRailway::VirtualTrainTemplate& request, ::GRPCRailway::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::GRPCRailway::VirtualTrainTemplate, ::GRPCRailway::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_AddVirtualTrains_, context, request, response);
+}
+
+void Railway::Stub::async::AddVirtualTrains(::grpc::ClientContext* context, const ::GRPCRailway::VirtualTrainTemplate* request, ::GRPCRailway::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::GRPCRailway::VirtualTrainTemplate, ::GRPCRailway::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AddVirtualTrains_, context, request, response, std::move(f));
+}
+
+void Railway::Stub::async::AddVirtualTrains(::grpc::ClientContext* context, const ::GRPCRailway::VirtualTrainTemplate* request, ::GRPCRailway::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AddVirtualTrains_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::GRPCRailway::Empty>* Railway::Stub::PrepareAsyncAddVirtualTrainsRaw(::grpc::ClientContext* context, const ::GRPCRailway::VirtualTrainTemplate& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::GRPCRailway::Empty, ::GRPCRailway::VirtualTrainTemplate, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_AddVirtualTrains_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::GRPCRailway::Empty>* Railway::Stub::AsyncAddVirtualTrainsRaw(::grpc::ClientContext* context, const ::GRPCRailway::VirtualTrainTemplate& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncAddVirtualTrainsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 Railway::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Railway_method_names[0],
@@ -209,6 +234,16 @@ Railway::Service::Service() {
              ::GRPCRailway::TrainArray* resp) {
                return service->GetTrainOnRail(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Railway_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Railway::Service, ::GRPCRailway::VirtualTrainTemplate, ::GRPCRailway::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Railway::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::GRPCRailway::VirtualTrainTemplate* req,
+             ::GRPCRailway::Empty* resp) {
+               return service->AddVirtualTrains(ctx, req, resp);
+             }, this)));
 }
 
 Railway::Service::~Service() {
@@ -243,6 +278,13 @@ Railway::Service::~Service() {
 }
 
 ::grpc::Status Railway::Service::GetTrainOnRail(::grpc::ServerContext* context, const ::GRPCRailway::Empty* request, ::GRPCRailway::TrainArray* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Railway::Service::AddVirtualTrains(::grpc::ServerContext* context, const ::GRPCRailway::VirtualTrainTemplate* request, ::GRPCRailway::Empty* response) {
   (void) context;
   (void) request;
   (void) response;

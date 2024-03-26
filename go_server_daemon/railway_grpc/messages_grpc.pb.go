@@ -27,6 +27,7 @@ type RailwayClient interface {
 	GetTrainInQueue(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TrainArray, error)
 	GetAllTrain(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TrainArray, error)
 	GetTrainOnRail(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TrainArray, error)
+	AddVirtualTrains(ctx context.Context, in *VirtualTrainTemplate, opts ...grpc.CallOption) (*Empty, error)
 }
 
 type railwayClient struct {
@@ -82,6 +83,15 @@ func (c *railwayClient) GetTrainOnRail(ctx context.Context, in *Empty, opts ...g
 	return out, nil
 }
 
+func (c *railwayClient) AddVirtualTrains(ctx context.Context, in *VirtualTrainTemplate, opts ...grpc.CallOption) (*Empty, error) {
+	out := new(Empty)
+	err := c.cc.Invoke(ctx, "/GRPCRailway.Railway/AddVirtualTrains", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // RailwayServer is the server API for Railway service.
 // All implementations must embed UnimplementedRailwayServer
 // for forward compatibility
@@ -91,6 +101,7 @@ type RailwayServer interface {
 	GetTrainInQueue(context.Context, *Empty) (*TrainArray, error)
 	GetAllTrain(context.Context, *Empty) (*TrainArray, error)
 	GetTrainOnRail(context.Context, *Empty) (*TrainArray, error)
+	AddVirtualTrains(context.Context, *VirtualTrainTemplate) (*Empty, error)
 	mustEmbedUnimplementedRailwayServer()
 }
 
@@ -112,6 +123,9 @@ func (UnimplementedRailwayServer) GetAllTrain(context.Context, *Empty) (*TrainAr
 }
 func (UnimplementedRailwayServer) GetTrainOnRail(context.Context, *Empty) (*TrainArray, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTrainOnRail not implemented")
+}
+func (UnimplementedRailwayServer) AddVirtualTrains(context.Context, *VirtualTrainTemplate) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddVirtualTrains not implemented")
 }
 func (UnimplementedRailwayServer) mustEmbedUnimplementedRailwayServer() {}
 
@@ -216,6 +230,24 @@ func _Railway_GetTrainOnRail_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Railway_AddVirtualTrains_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(VirtualTrainTemplate)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RailwayServer).AddVirtualTrains(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/GRPCRailway.Railway/AddVirtualTrains",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RailwayServer).AddVirtualTrains(ctx, req.(*VirtualTrainTemplate))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Railway_ServiceDesc is the grpc.ServiceDesc for Railway service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -242,6 +274,10 @@ var Railway_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTrainOnRail",
 			Handler:    _Railway_GetTrainOnRail_Handler,
+		},
+		{
+			MethodName: "AddVirtualTrains",
+			Handler:    _Railway_AddVirtualTrains_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

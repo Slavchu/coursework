@@ -70,6 +70,9 @@ extern TrainDefaultTypeInternal _Train_default_instance_;
 class TrainArray;
 struct TrainArrayDefaultTypeInternal;
 extern TrainArrayDefaultTypeInternal _TrainArray_default_instance_;
+class VirtualTrainTemplate;
+struct VirtualTrainTemplateDefaultTypeInternal;
+extern VirtualTrainTemplateDefaultTypeInternal _VirtualTrainTemplate_default_instance_;
 }  // namespace GRPCRailway
 namespace google {
 namespace protobuf {
@@ -117,6 +120,217 @@ inline bool ETrainState_Parse(absl::string_view name, ETrainState* value) {
 
 
 // -------------------------------------------------------------------
+
+class VirtualTrainTemplate final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:GRPCRailway.VirtualTrainTemplate) */ {
+ public:
+  inline VirtualTrainTemplate() : VirtualTrainTemplate(nullptr) {}
+  ~VirtualTrainTemplate() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR VirtualTrainTemplate(::google::protobuf::internal::ConstantInitialized);
+
+  inline VirtualTrainTemplate(const VirtualTrainTemplate& from)
+      : VirtualTrainTemplate(nullptr, from) {}
+  VirtualTrainTemplate(VirtualTrainTemplate&& from) noexcept
+    : VirtualTrainTemplate() {
+    *this = ::std::move(from);
+  }
+
+  inline VirtualTrainTemplate& operator=(const VirtualTrainTemplate& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline VirtualTrainTemplate& operator=(VirtualTrainTemplate&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const VirtualTrainTemplate& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const VirtualTrainTemplate* internal_default_instance() {
+    return reinterpret_cast<const VirtualTrainTemplate*>(
+               &_VirtualTrainTemplate_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    0;
+
+  friend void swap(VirtualTrainTemplate& a, VirtualTrainTemplate& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(VirtualTrainTemplate* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(VirtualTrainTemplate* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  VirtualTrainTemplate* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<VirtualTrainTemplate>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const VirtualTrainTemplate& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const VirtualTrainTemplate& from) {
+    VirtualTrainTemplate::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(VirtualTrainTemplate* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "GRPCRailway.VirtualTrainTemplate";
+  }
+  protected:
+  explicit VirtualTrainTemplate(::google::protobuf::Arena* arena);
+  VirtualTrainTemplate(::google::protobuf::Arena* arena, const VirtualTrainTemplate& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNumFieldNumber = 1,
+    kTimeIntervalMinFieldNumber = 2,
+    kTimeIntervalMaxFieldNumber = 3,
+    kTimeToStayFieldNumber = 4,
+  };
+  // uint32 num = 1;
+  void clear_num() ;
+  ::uint32_t num() const;
+  void set_num(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_num() const;
+  void _internal_set_num(::uint32_t value);
+
+  public:
+  // uint32 time_interval_min = 2;
+  void clear_time_interval_min() ;
+  ::uint32_t time_interval_min() const;
+  void set_time_interval_min(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_time_interval_min() const;
+  void _internal_set_time_interval_min(::uint32_t value);
+
+  public:
+  // uint32 time_interval_max = 3;
+  void clear_time_interval_max() ;
+  ::uint32_t time_interval_max() const;
+  void set_time_interval_max(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_time_interval_max() const;
+  void _internal_set_time_interval_max(::uint32_t value);
+
+  public:
+  // uint32 time_to_stay = 4;
+  void clear_time_to_stay() ;
+  ::uint32_t time_to_stay() const;
+  void set_time_to_stay(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_time_to_stay() const;
+  void _internal_set_time_to_stay(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:GRPCRailway.VirtualTrainTemplate)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 4, 0,
+      0, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::uint32_t num_;
+    ::uint32_t time_interval_min_;
+    ::uint32_t time_interval_max_;
+    ::uint32_t time_to_stay_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_messages_2eproto;
+};// -------------------------------------------------------------------
 
 class Train final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:GRPCRailway.Train) */ {
@@ -177,7 +391,7 @@ class Train final :
                &_Train_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    2;
 
   friend void swap(Train& a, Train& b) {
     a.Swap(&b);
@@ -393,7 +607,7 @@ class Empty final :
                &_Empty_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    4;
 
   friend void swap(Empty& a, Empty& b) {
     a.Swap(&b);
@@ -530,7 +744,7 @@ class TrainArray final :
                &_TrainArray_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    1;
 
   friend void swap(TrainArray& a, TrainArray& b) {
     a.Swap(&b);
@@ -713,7 +927,7 @@ class RailwayState final :
                &_RailwayState_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    3;
 
   friend void swap(RailwayState& a, RailwayState& b) {
     a.Swap(&b);
@@ -861,6 +1075,102 @@ class RailwayState final :
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// VirtualTrainTemplate
+
+// uint32 num = 1;
+inline void VirtualTrainTemplate::clear_num() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.num_ = 0u;
+}
+inline ::uint32_t VirtualTrainTemplate::num() const {
+  // @@protoc_insertion_point(field_get:GRPCRailway.VirtualTrainTemplate.num)
+  return _internal_num();
+}
+inline void VirtualTrainTemplate::set_num(::uint32_t value) {
+  _internal_set_num(value);
+  // @@protoc_insertion_point(field_set:GRPCRailway.VirtualTrainTemplate.num)
+}
+inline ::uint32_t VirtualTrainTemplate::_internal_num() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.num_;
+}
+inline void VirtualTrainTemplate::_internal_set_num(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.num_ = value;
+}
+
+// uint32 time_interval_min = 2;
+inline void VirtualTrainTemplate::clear_time_interval_min() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.time_interval_min_ = 0u;
+}
+inline ::uint32_t VirtualTrainTemplate::time_interval_min() const {
+  // @@protoc_insertion_point(field_get:GRPCRailway.VirtualTrainTemplate.time_interval_min)
+  return _internal_time_interval_min();
+}
+inline void VirtualTrainTemplate::set_time_interval_min(::uint32_t value) {
+  _internal_set_time_interval_min(value);
+  // @@protoc_insertion_point(field_set:GRPCRailway.VirtualTrainTemplate.time_interval_min)
+}
+inline ::uint32_t VirtualTrainTemplate::_internal_time_interval_min() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.time_interval_min_;
+}
+inline void VirtualTrainTemplate::_internal_set_time_interval_min(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.time_interval_min_ = value;
+}
+
+// uint32 time_interval_max = 3;
+inline void VirtualTrainTemplate::clear_time_interval_max() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.time_interval_max_ = 0u;
+}
+inline ::uint32_t VirtualTrainTemplate::time_interval_max() const {
+  // @@protoc_insertion_point(field_get:GRPCRailway.VirtualTrainTemplate.time_interval_max)
+  return _internal_time_interval_max();
+}
+inline void VirtualTrainTemplate::set_time_interval_max(::uint32_t value) {
+  _internal_set_time_interval_max(value);
+  // @@protoc_insertion_point(field_set:GRPCRailway.VirtualTrainTemplate.time_interval_max)
+}
+inline ::uint32_t VirtualTrainTemplate::_internal_time_interval_max() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.time_interval_max_;
+}
+inline void VirtualTrainTemplate::_internal_set_time_interval_max(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.time_interval_max_ = value;
+}
+
+// uint32 time_to_stay = 4;
+inline void VirtualTrainTemplate::clear_time_to_stay() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.time_to_stay_ = 0u;
+}
+inline ::uint32_t VirtualTrainTemplate::time_to_stay() const {
+  // @@protoc_insertion_point(field_get:GRPCRailway.VirtualTrainTemplate.time_to_stay)
+  return _internal_time_to_stay();
+}
+inline void VirtualTrainTemplate::set_time_to_stay(::uint32_t value) {
+  _internal_set_time_to_stay(value);
+  // @@protoc_insertion_point(field_set:GRPCRailway.VirtualTrainTemplate.time_to_stay)
+}
+inline ::uint32_t VirtualTrainTemplate::_internal_time_to_stay() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.time_to_stay_;
+}
+inline void VirtualTrainTemplate::_internal_set_time_to_stay(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.time_to_stay_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // TrainArray

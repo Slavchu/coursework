@@ -154,12 +154,13 @@ void railway::VirtualTrain::tick(){
     RailwayStation::get_instance()->train_event(this->id, ETrainEvent::TRAIN_DEPARTURING);
 }
 
-railway::VirtualTrain::VirtualTrain(unsigned int wagons, unsigned int time_to_arrive){
+railway::VirtualTrain::VirtualTrain(unsigned int wagons, unsigned int time_to_arrive, unsigned int time_to_stay){
     this->train_name = "Virtual";
     this->id = 0;
     this->wagons = wagons;
     this->time_for_road = time_to_arrive;
     this->state = ETrainState::IN_TRIP;
+    this->time_to_stay = time_to_stay;
     time_t depart_time = time(0); 
     arriving_time = time_for_road + depart_time; 
     std::thread(&VirtualTrain::tick, this).detach();

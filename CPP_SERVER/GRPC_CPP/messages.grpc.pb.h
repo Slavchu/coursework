@@ -70,6 +70,13 @@ class Railway final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GRPCRailway::TrainArray>> PrepareAsyncGetTrainOnRail(::grpc::ClientContext* context, const ::GRPCRailway::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GRPCRailway::TrainArray>>(PrepareAsyncGetTrainOnRailRaw(context, request, cq));
     }
+    virtual ::grpc::Status AddVirtualTrains(::grpc::ClientContext* context, const ::GRPCRailway::VirtualTrainTemplate& request, ::GRPCRailway::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GRPCRailway::Empty>> AsyncAddVirtualTrains(::grpc::ClientContext* context, const ::GRPCRailway::VirtualTrainTemplate& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GRPCRailway::Empty>>(AsyncAddVirtualTrainsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GRPCRailway::Empty>> PrepareAsyncAddVirtualTrains(::grpc::ClientContext* context, const ::GRPCRailway::VirtualTrainTemplate& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GRPCRailway::Empty>>(PrepareAsyncAddVirtualTrainsRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -83,6 +90,8 @@ class Railway final {
       virtual void GetAllTrain(::grpc::ClientContext* context, const ::GRPCRailway::Empty* request, ::GRPCRailway::TrainArray* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetTrainOnRail(::grpc::ClientContext* context, const ::GRPCRailway::Empty* request, ::GRPCRailway::TrainArray* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetTrainOnRail(::grpc::ClientContext* context, const ::GRPCRailway::Empty* request, ::GRPCRailway::TrainArray* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void AddVirtualTrains(::grpc::ClientContext* context, const ::GRPCRailway::VirtualTrainTemplate* request, ::GRPCRailway::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void AddVirtualTrains(::grpc::ClientContext* context, const ::GRPCRailway::VirtualTrainTemplate* request, ::GRPCRailway::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -98,6 +107,8 @@ class Railway final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::GRPCRailway::TrainArray>* PrepareAsyncGetAllTrainRaw(::grpc::ClientContext* context, const ::GRPCRailway::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::GRPCRailway::TrainArray>* AsyncGetTrainOnRailRaw(::grpc::ClientContext* context, const ::GRPCRailway::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::GRPCRailway::TrainArray>* PrepareAsyncGetTrainOnRailRaw(::grpc::ClientContext* context, const ::GRPCRailway::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::GRPCRailway::Empty>* AsyncAddVirtualTrainsRaw(::grpc::ClientContext* context, const ::GRPCRailway::VirtualTrainTemplate& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::GRPCRailway::Empty>* PrepareAsyncAddVirtualTrainsRaw(::grpc::ClientContext* context, const ::GRPCRailway::VirtualTrainTemplate& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -137,6 +148,13 @@ class Railway final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GRPCRailway::TrainArray>> PrepareAsyncGetTrainOnRail(::grpc::ClientContext* context, const ::GRPCRailway::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GRPCRailway::TrainArray>>(PrepareAsyncGetTrainOnRailRaw(context, request, cq));
     }
+    ::grpc::Status AddVirtualTrains(::grpc::ClientContext* context, const ::GRPCRailway::VirtualTrainTemplate& request, ::GRPCRailway::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GRPCRailway::Empty>> AsyncAddVirtualTrains(::grpc::ClientContext* context, const ::GRPCRailway::VirtualTrainTemplate& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GRPCRailway::Empty>>(AsyncAddVirtualTrainsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GRPCRailway::Empty>> PrepareAsyncAddVirtualTrains(::grpc::ClientContext* context, const ::GRPCRailway::VirtualTrainTemplate& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GRPCRailway::Empty>>(PrepareAsyncAddVirtualTrainsRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -150,6 +168,8 @@ class Railway final {
       void GetAllTrain(::grpc::ClientContext* context, const ::GRPCRailway::Empty* request, ::GRPCRailway::TrainArray* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetTrainOnRail(::grpc::ClientContext* context, const ::GRPCRailway::Empty* request, ::GRPCRailway::TrainArray* response, std::function<void(::grpc::Status)>) override;
       void GetTrainOnRail(::grpc::ClientContext* context, const ::GRPCRailway::Empty* request, ::GRPCRailway::TrainArray* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void AddVirtualTrains(::grpc::ClientContext* context, const ::GRPCRailway::VirtualTrainTemplate* request, ::GRPCRailway::Empty* response, std::function<void(::grpc::Status)>) override;
+      void AddVirtualTrains(::grpc::ClientContext* context, const ::GRPCRailway::VirtualTrainTemplate* request, ::GRPCRailway::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -171,11 +191,14 @@ class Railway final {
     ::grpc::ClientAsyncResponseReader< ::GRPCRailway::TrainArray>* PrepareAsyncGetAllTrainRaw(::grpc::ClientContext* context, const ::GRPCRailway::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::GRPCRailway::TrainArray>* AsyncGetTrainOnRailRaw(::grpc::ClientContext* context, const ::GRPCRailway::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::GRPCRailway::TrainArray>* PrepareAsyncGetTrainOnRailRaw(::grpc::ClientContext* context, const ::GRPCRailway::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::GRPCRailway::Empty>* AsyncAddVirtualTrainsRaw(::grpc::ClientContext* context, const ::GRPCRailway::VirtualTrainTemplate& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::GRPCRailway::Empty>* PrepareAsyncAddVirtualTrainsRaw(::grpc::ClientContext* context, const ::GRPCRailway::VirtualTrainTemplate& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetRailwayState_;
     const ::grpc::internal::RpcMethod rpcmethod_GetTrain_;
     const ::grpc::internal::RpcMethod rpcmethod_GetTrainInQueue_;
     const ::grpc::internal::RpcMethod rpcmethod_GetAllTrain_;
     const ::grpc::internal::RpcMethod rpcmethod_GetTrainOnRail_;
+    const ::grpc::internal::RpcMethod rpcmethod_AddVirtualTrains_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -188,6 +211,7 @@ class Railway final {
     virtual ::grpc::Status GetTrainInQueue(::grpc::ServerContext* context, const ::GRPCRailway::Empty* request, ::GRPCRailway::TrainArray* response);
     virtual ::grpc::Status GetAllTrain(::grpc::ServerContext* context, const ::GRPCRailway::Empty* request, ::GRPCRailway::TrainArray* response);
     virtual ::grpc::Status GetTrainOnRail(::grpc::ServerContext* context, const ::GRPCRailway::Empty* request, ::GRPCRailway::TrainArray* response);
+    virtual ::grpc::Status AddVirtualTrains(::grpc::ServerContext* context, const ::GRPCRailway::VirtualTrainTemplate* request, ::GRPCRailway::Empty* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_GetRailwayState : public BaseClass {
@@ -289,7 +313,27 @@ class Railway final {
       ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetRailwayState<WithAsyncMethod_GetTrain<WithAsyncMethod_GetTrainInQueue<WithAsyncMethod_GetAllTrain<WithAsyncMethod_GetTrainOnRail<Service > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_AddVirtualTrains : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_AddVirtualTrains() {
+      ::grpc::Service::MarkMethodAsync(5);
+    }
+    ~WithAsyncMethod_AddVirtualTrains() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddVirtualTrains(::grpc::ServerContext* /*context*/, const ::GRPCRailway::VirtualTrainTemplate* /*request*/, ::GRPCRailway::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestAddVirtualTrains(::grpc::ServerContext* context, ::GRPCRailway::VirtualTrainTemplate* request, ::grpc::ServerAsyncResponseWriter< ::GRPCRailway::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_GetRailwayState<WithAsyncMethod_GetTrain<WithAsyncMethod_GetTrainInQueue<WithAsyncMethod_GetAllTrain<WithAsyncMethod_GetTrainOnRail<WithAsyncMethod_AddVirtualTrains<Service > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetRailwayState : public BaseClass {
    private:
@@ -425,7 +469,34 @@ class Railway final {
     virtual ::grpc::ServerUnaryReactor* GetTrainOnRail(
       ::grpc::CallbackServerContext* /*context*/, const ::GRPCRailway::Empty* /*request*/, ::GRPCRailway::TrainArray* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetRailwayState<WithCallbackMethod_GetTrain<WithCallbackMethod_GetTrainInQueue<WithCallbackMethod_GetAllTrain<WithCallbackMethod_GetTrainOnRail<Service > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_AddVirtualTrains : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_AddVirtualTrains() {
+      ::grpc::Service::MarkMethodCallback(5,
+          new ::grpc::internal::CallbackUnaryHandler< ::GRPCRailway::VirtualTrainTemplate, ::GRPCRailway::Empty>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::GRPCRailway::VirtualTrainTemplate* request, ::GRPCRailway::Empty* response) { return this->AddVirtualTrains(context, request, response); }));}
+    void SetMessageAllocatorFor_AddVirtualTrains(
+        ::grpc::MessageAllocator< ::GRPCRailway::VirtualTrainTemplate, ::GRPCRailway::Empty>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::GRPCRailway::VirtualTrainTemplate, ::GRPCRailway::Empty>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_AddVirtualTrains() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddVirtualTrains(::grpc::ServerContext* /*context*/, const ::GRPCRailway::VirtualTrainTemplate* /*request*/, ::GRPCRailway::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* AddVirtualTrains(
+      ::grpc::CallbackServerContext* /*context*/, const ::GRPCRailway::VirtualTrainTemplate* /*request*/, ::GRPCRailway::Empty* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_GetRailwayState<WithCallbackMethod_GetTrain<WithCallbackMethod_GetTrainInQueue<WithCallbackMethod_GetAllTrain<WithCallbackMethod_GetTrainOnRail<WithCallbackMethod_AddVirtualTrains<Service > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetRailwayState : public BaseClass {
@@ -508,6 +579,23 @@ class Railway final {
     }
     // disable synchronous version of this method
     ::grpc::Status GetTrainOnRail(::grpc::ServerContext* /*context*/, const ::GRPCRailway::Empty* /*request*/, ::GRPCRailway::TrainArray* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_AddVirtualTrains : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_AddVirtualTrains() {
+      ::grpc::Service::MarkMethodGeneric(5);
+    }
+    ~WithGenericMethod_AddVirtualTrains() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddVirtualTrains(::grpc::ServerContext* /*context*/, const ::GRPCRailway::VirtualTrainTemplate* /*request*/, ::GRPCRailway::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -610,6 +698,26 @@ class Railway final {
     }
     void RequestGetTrainOnRail(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_AddVirtualTrains : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_AddVirtualTrains() {
+      ::grpc::Service::MarkMethodRaw(5);
+    }
+    ~WithRawMethod_AddVirtualTrains() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddVirtualTrains(::grpc::ServerContext* /*context*/, const ::GRPCRailway::VirtualTrainTemplate* /*request*/, ::GRPCRailway::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestAddVirtualTrains(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -720,6 +828,28 @@ class Railway final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* GetTrainOnRail(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_AddVirtualTrains : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_AddVirtualTrains() {
+      ::grpc::Service::MarkMethodRawCallback(5,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->AddVirtualTrains(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_AddVirtualTrains() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddVirtualTrains(::grpc::ServerContext* /*context*/, const ::GRPCRailway::VirtualTrainTemplate* /*request*/, ::GRPCRailway::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* AddVirtualTrains(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -857,9 +987,36 @@ class Railway final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetTrainOnRail(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::GRPCRailway::Empty,::GRPCRailway::TrainArray>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetRailwayState<WithStreamedUnaryMethod_GetTrain<WithStreamedUnaryMethod_GetTrainInQueue<WithStreamedUnaryMethod_GetAllTrain<WithStreamedUnaryMethod_GetTrainOnRail<Service > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_AddVirtualTrains : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_AddVirtualTrains() {
+      ::grpc::Service::MarkMethodStreamed(5,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::GRPCRailway::VirtualTrainTemplate, ::GRPCRailway::Empty>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::GRPCRailway::VirtualTrainTemplate, ::GRPCRailway::Empty>* streamer) {
+                       return this->StreamedAddVirtualTrains(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_AddVirtualTrains() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status AddVirtualTrains(::grpc::ServerContext* /*context*/, const ::GRPCRailway::VirtualTrainTemplate* /*request*/, ::GRPCRailway::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedAddVirtualTrains(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::GRPCRailway::VirtualTrainTemplate,::GRPCRailway::Empty>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_GetRailwayState<WithStreamedUnaryMethod_GetTrain<WithStreamedUnaryMethod_GetTrainInQueue<WithStreamedUnaryMethod_GetAllTrain<WithStreamedUnaryMethod_GetTrainOnRail<WithStreamedUnaryMethod_AddVirtualTrains<Service > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetRailwayState<WithStreamedUnaryMethod_GetTrain<WithStreamedUnaryMethod_GetTrainInQueue<WithStreamedUnaryMethod_GetAllTrain<WithStreamedUnaryMethod_GetTrainOnRail<Service > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetRailwayState<WithStreamedUnaryMethod_GetTrain<WithStreamedUnaryMethod_GetTrainInQueue<WithStreamedUnaryMethod_GetAllTrain<WithStreamedUnaryMethod_GetTrainOnRail<WithStreamedUnaryMethod_AddVirtualTrains<Service > > > > > > StreamedService;
 };
 
 }  // namespace GRPCRailway

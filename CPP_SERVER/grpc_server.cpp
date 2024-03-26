@@ -8,7 +8,20 @@
 #include <grpcpp/server_builder.h>
 #include <railway.hpp>
 
-::grpc::Status RailwayService::GetRailwayState(::grpc::ServerContext *context, const ::GRPCRailway::Empty *request, ::GRPCRailway::RailwayState *response){
+::grpc::Status RailwayService::AddVirtualTrains(::grpc::ServerContext *context, const ::GRPCRailway::VirtualTrainTemplate *request, ::GRPCRailway::Empty *response)
+{
+    auto railway = railway::RailwayStation::get_instance();
+    if(!railway) return ::grpc::Status::CANCELLED;
+    for(int i = 0; i < request->num(); i++){
+        railway->register_train(std::make_shared<railway::VirtualTrain>(rand()%50 + 1,
+                                                                        random()%(request->time_interval_max()-request->time_interval_min())+request->time_interval_min(), 
+                                                                        request->time_to_stay()));
+    }
+    return ::grpc::Status::OK;
+}
+
+::grpc::Status RailwayService::GetRailwayState(::grpc::ServerContext *context, const ::GRPCRailway::Empty *request, ::GRPCRailway::RailwayState *response)
+{
     if(!railway::RailwayStation::get_instance()) return ::grpc::Status::CANCELLED;
     response->set_rail_num(railway::RailwayStation::get_instance()->get_rail_num());
     auto rails = railway::RailwayStation::get_instance()->get_trains_on_rail();

@@ -17,6 +17,13 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 )
 
+type VirtualTrainTemplate struct {
+	Train_num         string
+	Time_interval_min string
+	Time_interval_max string
+	Time_to_stay      string
+}
+
 var client pb.RailwayClient
 
 func rest_request(w http.ResponseWriter, r *http.Request) {
@@ -33,7 +40,6 @@ func rest_request(w http.ResponseWriter, r *http.Request) {
 				io.WriteString(w, "{\"error\" : true}")
 				return
 			}
-			println(railway.RailNum)
 			answer, err := json.Marshal(railway)
 			if err != nil {
 				io.WriteString(w, "{\"error\" : true}")
@@ -112,7 +118,44 @@ func rest_request(w http.ResponseWriter, r *http.Request) {
 		}
 
 		io.WriteString(w, "{\"error\" : true}")
-		return
+
+	case "POST":
+		if r.URL.Path == "/rest/add_virtual_trains" {
+			var v_template pb.VirtualTrainTemplate
+			body, err := io.ReadAll(r.Body)
+			if err != nil {
+				return
+			}
+			var unmarshaled VirtualTrainTemplate
+			err = json.Unmarshal(body, &unmarshaled)
+			if err != nil {
+				return
+			}
+			val, err := strconv.Atoi(unmarshaled.Train_num)
+			if err != nil {
+				return
+			}
+			v_template.Num = uint32(val)
+			val, err = strconv.Atoi(unmarshaled.Time_to_stay)
+			if err != nil {
+				return
+			}
+			v_template.TimeToStay = uint32(val)
+			val, err = strconv.Atoi(unmarshaled.Time_interval_min)
+			if err != nil {
+				return
+			}
+			v_template.TimeIntervalMin = uint32(val)
+			val, err = strconv.Atoi(unmarshaled.Time_interval_max)
+			if err != nil {
+				return
+			}
+			v_template.TimeIntervalMax = uint32(val)
+			_, err = client.AddVirtualTrains(context.Background(), &v_template)
+			if err != nil {
+				return
+			}
+		}
 	}
 }
 func reader(w http.ResponseWriter, r *http.Request) {

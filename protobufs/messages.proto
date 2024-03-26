@@ -7,6 +7,14 @@ service Railway{
     rpc GetTrainInQueue(Empty) returns (TrainArray){};
     rpc GetAllTrain(Empty) returns (TrainArray){};
     rpc GetTrainOnRail(Empty) returns (TrainArray){};
+    rpc AddVirtualTrains(VirtualTrainTemplate) returns(Empty){}
+
+}
+message VirtualTrainTemplate{
+    uint32 num = 1;
+    uint32 time_interval_min = 2;
+    uint32 time_interval_max = 3;
+    uint32 time_to_stay = 4;
 
 }
 enum ETrainState{

@@ -54,9 +54,9 @@ namespace railway{
     class VirtualTrain: public ITrain{
         unsigned int time_for_road; 
         void tick();
-
+        unsigned int time_to_stay;
         public:
-        VirtualTrain(unsigned int wagons, unsigned int time_to_arrive);
+        VirtualTrain(unsigned int wagons, unsigned int time_to_arrive, unsigned time_to_stay= 5);
         virtual void update_params() override;
     };
     
