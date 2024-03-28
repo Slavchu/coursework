@@ -34,6 +34,8 @@
             trains->set_train_state((::GRPCRailway::ETrainState) train->get_state());
             trains->set_id(train->get_id());
             trains->set_wagons(train->get_wagons());
+            
+            
         }
         else{ 
             response->add_trains()->set_id(0);
@@ -61,6 +63,9 @@
         res->set_name(it->get_train_name());
         res->set_train_state((::GRPCRailway::ETrainState)it->get_state());
         res->set_wagons(it->get_wagons());
+      
+        res->set_lateness ( it->get_lateness());
+    
     }
     return ::grpc::Status::OK;
 }
@@ -76,6 +81,7 @@
         res->set_name(it->get_train_name());
         res->set_train_state((::GRPCRailway::ETrainState)it->get_state());
         res->set_wagons(it->get_wagons());
+        res->set_lateness(it->get_lateness());
     }
     return ::grpc::Status::OK;
 }

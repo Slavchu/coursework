@@ -142,8 +142,13 @@ void railway::VirtualTrain::tick(){
             RailwayStation::get_instance()->train_event(this->id, ETrainEvent::TRAIN_ARRIVED);
             break;   
         }
-        if(random()%30 == 1){
-            arriving_time+= random()%15;
+        if(random()%30 == 1 && delayed_times < 4){
+            delayed_times++;
+            if(random()%4)
+                lateness += random()%120 + 1;
+            else lateness += random()%20 + 1;
+            arriving_time+= lateness; 
+            this->state = ETrainState::IN_TRIP_LATE;
             RailwayStation::get_instance()->train_event(this->id, ETrainEvent::TRAIN_LATE);
         }
         
@@ -157,6 +162,7 @@ void railway::VirtualTrain::tick(){
 railway::VirtualTrain::VirtualTrain(unsigned int wagons, unsigned int time_to_arrive, unsigned int time_to_stay){
     this->train_name = "Virtual";
     this->id = 0;
+    delayed_times = 0;
     this->wagons = wagons;
     this->time_for_road = time_to_arrive;
     this->state = ETrainState::IN_TRIP;
@@ -169,7 +175,12 @@ railway::VirtualTrain::VirtualTrain(unsigned int wagons, unsigned int time_to_ar
 void railway::VirtualTrain::update_params(){
 
 }
-unsigned int railway::ITrain::get_id() const{
+unsigned int railway::ITrain::get_lateness() const
+{
+    return this->lateness;
+}
+unsigned int railway::ITrain::get_id() const
+{
     return this->id;
 }
 unsigned int railway::ITrain::get_wagons() const

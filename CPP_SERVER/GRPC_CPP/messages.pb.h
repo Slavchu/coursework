@@ -85,6 +85,7 @@ enum ETrainState : int {
   IN_QUEUE = 1,
   ARRIVED = 2,
   DEPARTURED = 3,
+  IN_TRIP_LATE = 4,
   ETrainState_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   ETrainState_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -94,8 +95,8 @@ enum ETrainState : int {
 bool ETrainState_IsValid(int value);
 extern const uint32_t ETrainState_internal_data_[];
 constexpr ETrainState ETrainState_MIN = static_cast<ETrainState>(0);
-constexpr ETrainState ETrainState_MAX = static_cast<ETrainState>(3);
-constexpr int ETrainState_ARRAYSIZE = 3 + 1;
+constexpr ETrainState ETrainState_MAX = static_cast<ETrainState>(4);
+constexpr int ETrainState_ARRAYSIZE = 4 + 1;
 const ::google::protobuf::EnumDescriptor*
 ETrainState_descriptor();
 template <typename T>
@@ -108,7 +109,7 @@ const std::string& ETrainState_Name(T value) {
 template <>
 inline const std::string& ETrainState_Name(ETrainState value) {
   return ::google::protobuf::internal::NameOfDenseEnum<ETrainState_descriptor,
-                                                 0, 3>(
+                                                 0, 4>(
       static_cast<int>(value));
 }
 inline bool ETrainState_Parse(absl::string_view name, ETrainState* value) {
@@ -467,7 +468,8 @@ class Train final :
     kNameFieldNumber = 2,
     kIdFieldNumber = 1,
     kWagonsFieldNumber = 3,
-    kTrainStateFieldNumber = 4,
+    kLatenessFieldNumber = 4,
+    kTrainStateFieldNumber = 5,
   };
   // string name = 2;
   void clear_name() ;
@@ -505,7 +507,17 @@ class Train final :
   void _internal_set_wagons(::uint32_t value);
 
   public:
-  // .GRPCRailway.ETrainState train_state = 4;
+  // uint64 lateness = 4;
+  void clear_lateness() ;
+  ::uint64_t lateness() const;
+  void set_lateness(::uint64_t value);
+
+  private:
+  ::uint64_t _internal_lateness() const;
+  void _internal_set_lateness(::uint64_t value);
+
+  public:
+  // .GRPCRailway.ETrainState train_state = 5;
   void clear_train_state() ;
   ::GRPCRailway::ETrainState train_state() const;
   void set_train_state(::GRPCRailway::ETrainState value);
@@ -521,7 +533,7 @@ class Train final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 4, 0,
+      3, 5, 0,
       30, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -541,6 +553,7 @@ class Train final :
     ::google::protobuf::internal::ArenaStringPtr name_;
     ::uint32_t id_;
     ::uint32_t wagons_;
+    ::uint64_t lateness_;
     int train_state_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -1327,7 +1340,30 @@ inline void Train::_internal_set_wagons(::uint32_t value) {
   _impl_.wagons_ = value;
 }
 
-// .GRPCRailway.ETrainState train_state = 4;
+// uint64 lateness = 4;
+inline void Train::clear_lateness() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.lateness_ = ::uint64_t{0u};
+}
+inline ::uint64_t Train::lateness() const {
+  // @@protoc_insertion_point(field_get:GRPCRailway.Train.lateness)
+  return _internal_lateness();
+}
+inline void Train::set_lateness(::uint64_t value) {
+  _internal_set_lateness(value);
+  // @@protoc_insertion_point(field_set:GRPCRailway.Train.lateness)
+}
+inline ::uint64_t Train::_internal_lateness() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.lateness_;
+}
+inline void Train::_internal_set_lateness(::uint64_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.lateness_ = value;
+}
+
+// .GRPCRailway.ETrainState train_state = 5;
 inline void Train::clear_train_state() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.train_state_ = 0;

@@ -22,7 +22,7 @@ enum ETrainState{
     IN_QUEUE = 1;
     ARRIVED = 2;
     DEPARTURED = 3;
-
+    IN_TRIP_LATE = 4;
 }
 message TrainArray{
     repeated Train train_array = 1;
@@ -31,8 +31,8 @@ message Train{
     uint32 id = 1;
     string name = 2;
     uint32 wagons = 3;
-    ETrainState train_state = 4;
-
+    uint64 lateness = 4;
+    ETrainState train_state = 5;
 }
 message RailwayState{
     uint32 rail_num = 1;

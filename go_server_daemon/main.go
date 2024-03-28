@@ -89,7 +89,6 @@ func rest_request(w http.ResponseWriter, r *http.Request) {
 				io.WriteString(w, "{\"error\" : true}")
 				return
 			}
-
 			answer, err := json.Marshal(trains)
 			if err != nil {
 				io.WriteString(w, "{\"error\" : true}")

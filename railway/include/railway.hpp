@@ -22,7 +22,8 @@ namespace railway{
         IN_TRIP,
         IN_QUEUE,
         ARRIVED,
-        DEPARTURED
+        DEPARTURED,
+        IN_TRIP_LATE
     };
 
 
@@ -35,10 +36,12 @@ namespace railway{
         
         unsigned int wagons;
         unsigned int id;
+        unsigned int lateness = 0;
         ETrainState state;
         std::time_t arriving_time;
         std::string train_name;
         public:
+        unsigned int get_lateness () const;
         unsigned int get_id() const;
         unsigned int get_wagons () const;
         std::time_t get_arriving_time() const;
@@ -52,9 +55,11 @@ namespace railway{
     };
     
     class VirtualTrain: public ITrain{
+        unsigned short delayed_times = 0;
         unsigned int time_for_road; 
-        void tick();
         unsigned int time_to_stay;
+        void tick();
+        
         public:
         VirtualTrain(unsigned int wagons, unsigned int time_to_arrive, unsigned time_to_stay= 5);
         virtual void update_params() override;

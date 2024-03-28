@@ -51,6 +51,7 @@ inline constexpr Train::Impl_::Impl_(
             ::_pbi::ConstantInitialized()),
         id_{0u},
         wagons_{0u},
+        lateness_{::uint64_t{0u}},
         train_state_{static_cast< ::GRPCRailway::ETrainState >(0)},
         _cached_size_{0} {}
 
@@ -157,6 +158,7 @@ const ::uint32_t TableStruct_messages_2eproto::offsets[] PROTOBUF_SECTION_VARIAB
     PROTOBUF_FIELD_OFFSET(::GRPCRailway::Train, _impl_.id_),
     PROTOBUF_FIELD_OFFSET(::GRPCRailway::Train, _impl_.name_),
     PROTOBUF_FIELD_OFFSET(::GRPCRailway::Train, _impl_.wagons_),
+    PROTOBUF_FIELD_OFFSET(::GRPCRailway::Train, _impl_.lateness_),
     PROTOBUF_FIELD_OFFSET(::GRPCRailway::Train, _impl_.train_state_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::GRPCRailway::RailwayState, _internal_metadata_),
@@ -183,8 +185,8 @@ static const ::_pbi::MigrationSchema
         {0, -1, -1, sizeof(::GRPCRailway::VirtualTrainTemplate)},
         {12, -1, -1, sizeof(::GRPCRailway::TrainArray)},
         {21, -1, -1, sizeof(::GRPCRailway::Train)},
-        {33, -1, -1, sizeof(::GRPCRailway::RailwayState)},
-        {43, -1, -1, sizeof(::GRPCRailway::Empty)},
+        {34, -1, -1, sizeof(::GRPCRailway::RailwayState)},
+        {44, -1, -1, sizeof(::GRPCRailway::Empty)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -199,31 +201,32 @@ const char descriptor_table_protodef_messages_2eproto[] PROTOBUF_SECTION_VARIABL
     "TrainTemplate\022\013\n\003num\030\001 \001(\r\022\031\n\021time_inter"
     "val_min\030\002 \001(\r\022\031\n\021time_interval_max\030\003 \001(\r"
     "\022\024\n\014time_to_stay\030\004 \001(\r\"5\n\nTrainArray\022\'\n\013"
-    "train_array\030\001 \003(\0132\022.GRPCRailway.Train\"`\n"
+    "train_array\030\001 \003(\0132\022.GRPCRailway.Train\"r\n"
     "\005Train\022\n\n\002id\030\001 \001(\r\022\014\n\004name\030\002 \001(\t\022\016\n\006wago"
-    "ns\030\003 \001(\r\022-\n\013train_state\030\004 \001(\0162\030.GRPCRail"
-    "way.ETrainState\"D\n\014RailwayState\022\020\n\010rail_"
-    "num\030\001 \001(\r\022\"\n\006trains\030\002 \003(\0132\022.GRPCRailway."
-    "Train\"\007\n\005Empty*E\n\013ETrainState\022\013\n\007IN_TRIP"
-    "\020\000\022\014\n\010IN_QUEUE\020\001\022\013\n\007ARRIVED\020\002\022\016\n\nDEPARTU"
-    "RED\020\0032\221\003\n\007Railway\022B\n\017GetRailwayState\022\022.G"
-    "RPCRailway.Empty\032\031.GRPCRailway.RailwaySt"
-    "ate\"\000\0224\n\010GetTrain\022\022.GRPCRailway.Train\032\022."
-    "GRPCRailway.Train\"\000\022@\n\017GetTrainInQueue\022\022"
-    ".GRPCRailway.Empty\032\027.GRPCRailway.TrainAr"
-    "ray\"\000\022<\n\013GetAllTrain\022\022.GRPCRailway.Empty"
-    "\032\027.GRPCRailway.TrainArray\"\000\022\?\n\016GetTrainO"
-    "nRail\022\022.GRPCRailway.Empty\032\027.GRPCRailway."
-    "TrainArray\"\000\022K\n\020AddVirtualTrains\022!.GRPCR"
-    "ailway.VirtualTrainTemplate\032\022.GRPCRailwa"
-    "y.Empty\"\000B\"Z http_railway_server/railway"
-    "_grpcb\006proto3"
+    "ns\030\003 \001(\r\022\020\n\010lateness\030\004 \001(\004\022-\n\013train_stat"
+    "e\030\005 \001(\0162\030.GRPCRailway.ETrainState\"D\n\014Rai"
+    "lwayState\022\020\n\010rail_num\030\001 \001(\r\022\"\n\006trains\030\002 "
+    "\003(\0132\022.GRPCRailway.Train\"\007\n\005Empty*W\n\013ETra"
+    "inState\022\013\n\007IN_TRIP\020\000\022\014\n\010IN_QUEUE\020\001\022\013\n\007AR"
+    "RIVED\020\002\022\016\n\nDEPARTURED\020\003\022\020\n\014IN_TRIP_LATE\020"
+    "\0042\221\003\n\007Railway\022B\n\017GetRailwayState\022\022.GRPCR"
+    "ailway.Empty\032\031.GRPCRailway.RailwayState\""
+    "\000\0224\n\010GetTrain\022\022.GRPCRailway.Train\032\022.GRPC"
+    "Railway.Train\"\000\022@\n\017GetTrainInQueue\022\022.GRP"
+    "CRailway.Empty\032\027.GRPCRailway.TrainArray\""
+    "\000\022<\n\013GetAllTrain\022\022.GRPCRailway.Empty\032\027.G"
+    "RPCRailway.TrainArray\"\000\022\?\n\016GetTrainOnRai"
+    "l\022\022.GRPCRailway.Empty\032\027.GRPCRailway.Trai"
+    "nArray\"\000\022K\n\020AddVirtualTrains\022!.GRPCRailw"
+    "ay.VirtualTrainTemplate\032\022.GRPCRailway.Em"
+    "pty\"\000B\"Z http_railway_server/railway_grp"
+    "cb\006proto3"
 };
 static ::absl::once_flag descriptor_table_messages_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_messages_2eproto = {
     false,
     false,
-    893,
+    929,
     descriptor_table_protodef_messages_2eproto,
     "messages.proto",
     &descriptor_table_messages_2eproto_once,
@@ -261,9 +264,9 @@ const ::google::protobuf::EnumDescriptor* ETrainState_descriptor() {
   return file_level_enum_descriptors_messages_2eproto[0];
 }
 PROTOBUF_CONSTINIT const uint32_t ETrainState_internal_data_[] = {
-    262144u, 0u, };
+    327680u, 0u, };
 bool ETrainState_IsValid(int value) {
-  return 0 <= value && value <= 3;
+  return 0 <= value && value <= 4;
 }
 // ===================================================================
 
@@ -780,23 +783,21 @@ const char* Train::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 4, 0, 30, 2> Train::_table_ = {
+const ::_pbi::TcParseTable<3, 5, 0, 30, 2> Train::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    4, 24,  // max_field_number, fast_idx_mask
+    5, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967280,  // skipmap
+    4294967264,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    4,  // num_field_entries
+    5,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_Train_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // .GRPCRailway.ETrainState train_state = 4;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Train, _impl_.train_state_), 63>(),
-     {32, 63, 0, PROTOBUF_FIELD_OFFSET(Train, _impl_.train_state_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // uint32 id = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Train, _impl_.id_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(Train, _impl_.id_)}},
@@ -806,6 +807,14 @@ const ::_pbi::TcParseTable<2, 4, 0, 30, 2> Train::_table_ = {
     // uint32 wagons = 3;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Train, _impl_.wagons_), 63>(),
      {24, 63, 0, PROTOBUF_FIELD_OFFSET(Train, _impl_.wagons_)}},
+    // uint64 lateness = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(Train, _impl_.lateness_), 63>(),
+     {32, 63, 0, PROTOBUF_FIELD_OFFSET(Train, _impl_.lateness_)}},
+    // .GRPCRailway.ETrainState train_state = 5;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Train, _impl_.train_state_), 63>(),
+     {40, 63, 0, PROTOBUF_FIELD_OFFSET(Train, _impl_.train_state_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
@@ -818,7 +827,10 @@ const ::_pbi::TcParseTable<2, 4, 0, 30, 2> Train::_table_ = {
     // uint32 wagons = 3;
     {PROTOBUF_FIELD_OFFSET(Train, _impl_.wagons_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // .GRPCRailway.ETrainState train_state = 4;
+    // uint64 lateness = 4;
+    {PROTOBUF_FIELD_OFFSET(Train, _impl_.lateness_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt64)},
+    // .GRPCRailway.ETrainState train_state = 5;
     {PROTOBUF_FIELD_OFFSET(Train, _impl_.train_state_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
   }},
@@ -859,11 +871,18 @@ const ::_pbi::TcParseTable<2, 4, 0, 30, 2> Train::_table_ = {
         3, this->_internal_wagons(), target);
   }
 
-  // .GRPCRailway.ETrainState train_state = 4;
+  // uint64 lateness = 4;
+  if (this->_internal_lateness() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
+        4, this->_internal_lateness(), target);
+  }
+
+  // .GRPCRailway.ETrainState train_state = 5;
   if (this->_internal_train_state() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
-        4, this->_internal_train_state(), target);
+        5, this->_internal_train_state(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -901,7 +920,13 @@ const ::_pbi::TcParseTable<2, 4, 0, 30, 2> Train::_table_ = {
         this->_internal_wagons());
   }
 
-  // .GRPCRailway.ETrainState train_state = 4;
+  // uint64 lateness = 4;
+  if (this->_internal_lateness() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
+        this->_internal_lateness());
+  }
+
+  // .GRPCRailway.ETrainState train_state = 5;
   if (this->_internal_train_state() != 0) {
     total_size += 1 +
                   ::_pbi::WireFormatLite::EnumSize(this->_internal_train_state());
@@ -934,6 +959,9 @@ void Train::MergeImpl(::google::protobuf::Message& to_msg, const ::google::proto
   }
   if (from._internal_wagons() != 0) {
     _this->_internal_set_wagons(from._internal_wagons());
+  }
+  if (from._internal_lateness() != 0) {
+    _this->_internal_set_lateness(from._internal_lateness());
   }
   if (from._internal_train_state() != 0) {
     _this->_internal_set_train_state(from._internal_train_state());
