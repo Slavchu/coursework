@@ -4,18 +4,22 @@
 #include <chrono>
 #include <iostream>
 #include <iomanip>
+
 using namespace railway;
+std::mutex railway_state_mutex;
 
 std::mutex io_mutex;
 std::mutex train_mutex;
-RailwayStation*  RailwayStation::station_instance = 0;
+RailwayStation*  RailwayStation::class_instance = 0;
 std::atomic<unsigned int> RailwayStation::id_counter = 0;
+RailwayStationStat * RailwayStationStat::class_instance = 0;
+
 
 railway::RailwayStation::RailwayStation(const int &rail_num){
-    if(station_instance) return;
+    if(class_instance) return;
     this->rail_num = rail_num;
     std::cout << "Rail num:" << rail_num << std::endl;
-    station_instance = this;
+    class_instance = this;
     rails.resize(rail_num);
     id_counter = 0;
 
@@ -117,7 +121,7 @@ std::vector<std::shared_ptr<ITrain>> railway::RailwayStation::get_trains_on_rail
 
 RailwayStation *railway::RailwayStation::get_instance(){
 
-    return RailwayStation::station_instance;
+    return RailwayStation::class_instance;
 }
 
 void railway::RailwayStation::register_train(std::shared_ptr<ITrain> train){
@@ -209,4 +213,34 @@ ETrainState railway::ITrain::get_state() const
 }
 railway::ITrain::ITrain(){
     
+}
+
+unsigned int railway::RailwayStationStat::get_average_delay(){
+    auto trains = RailwayStation::get_instance()->get_all_trains();
+    unsigned int sum = 0;
+    unsigned int counter = 0;
+    for(auto it : trains){
+        if(it->get_state() == ETrainState::IN_TRIP_LATE){
+            sum+=it->get_lateness();
+            counter++;
+        }
+    }
+    railway_state_mutex.lock();
+    if(counter > trains.size()/5 && counter > 5){
+        this->average_delay = sum/counter + (sum%counter > counter/2);   //Avoid float trick
+    }
+    auto average = this->average_delay;
+    railway_state_mutex.unlock();
+    return average;
+
+}
+
+RailwayStationStat *railway::RailwayStationStat::get_instance()
+{
+    if(!class_instance){ 
+        class_instance = new RailwayStationStat();
+        class_instance->average_delay = 0;
+    }
+    
+    return class_instance;
 }

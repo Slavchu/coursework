@@ -831,6 +831,7 @@ class TrainArray final :
 
   enum : int {
     kTrainArrayFieldNumber = 1,
+    kAverageDelayFieldNumber = 2,
   };
   // repeated .GRPCRailway.Train train_array = 1;
   int train_array_size() const;
@@ -850,13 +851,23 @@ class TrainArray final :
   ::GRPCRailway::Train* add_train_array();
   const ::google::protobuf::RepeatedPtrField< ::GRPCRailway::Train >&
       train_array() const;
+  // uint64 average_delay = 2;
+  void clear_average_delay() ;
+  ::uint64_t average_delay() const;
+  void set_average_delay(::uint64_t value);
+
+  private:
+  ::uint64_t _internal_average_delay() const;
+  void _internal_set_average_delay(::uint64_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:GRPCRailway.TrainArray)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 1,
+      1, 2, 1,
       0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -874,6 +885,7 @@ class TrainArray final :
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::RepeatedPtrField< ::GRPCRailway::Train > train_array_;
+    ::uint64_t average_delay_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1235,6 +1247,29 @@ inline ::google::protobuf::RepeatedPtrField<::GRPCRailway::Train>*
 TrainArray::_internal_mutable_train_array() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.train_array_;
+}
+
+// uint64 average_delay = 2;
+inline void TrainArray::clear_average_delay() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.average_delay_ = ::uint64_t{0u};
+}
+inline ::uint64_t TrainArray::average_delay() const {
+  // @@protoc_insertion_point(field_get:GRPCRailway.TrainArray.average_delay)
+  return _internal_average_delay();
+}
+inline void TrainArray::set_average_delay(::uint64_t value) {
+  _internal_set_average_delay(value);
+  // @@protoc_insertion_point(field_set:GRPCRailway.TrainArray.average_delay)
+}
+inline ::uint64_t TrainArray::_internal_average_delay() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.average_delay_;
+}
+inline void TrainArray::_internal_set_average_delay(::uint64_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.average_delay_ = value;
 }
 
 // -------------------------------------------------------------------

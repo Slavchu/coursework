@@ -26,6 +26,7 @@ enum ETrainState{
 }
 message TrainArray{
     repeated Train train_array = 1;
+    uint64 average_delay = 2;
 };
 message Train{
     uint32 id = 1;

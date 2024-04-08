@@ -3,6 +3,15 @@ async function rest_request( request) {
     return response.json();
 }
 function set_train_table(trains_json, table_id){
+    if(trains_json["average_delay"]){
+            let seconds = trains_json["average_delay"]
+            let minutes = Math.floor(seconds/60);
+            seconds%=60;
+            let hours = Math.floor(minutes/ 60);
+            minutes%=60;
+        let stat_component = document.getElementById("Stats")
+        stat_component.innerHTML = "<p>Average delay:" + hours + ":" + minutes + ":" + seconds+"</p>";
+    }
     let all_trains_table = document.getElementById(table_id)
     all_trains_table.innerHTML = "<tr> <th>ID</th>  <th>State</th> <th>Wagons</th>  <th>Delay time</th> </tr>";
     if(trains_json["train_array"]){ 

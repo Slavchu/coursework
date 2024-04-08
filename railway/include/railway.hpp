@@ -54,10 +54,10 @@ namespace railway{
         virtual void update_params() = 0;
     };
     
-    class VirtualTrain: public ITrain{
-        unsigned short delayed_times = 0;
-        unsigned int time_for_road; 
-        unsigned int time_to_stay;
+    class VirtualTrain final: public ITrain{
+        std::atomic<unsigned short> delayed_times = 0;
+        std::atomic<unsigned short> time_for_road = 0; 
+        std::atomic<unsigned short> time_to_stay = 0;
         void tick();
         
         public:
@@ -65,13 +65,15 @@ namespace railway{
         virtual void update_params() override;
     };
     
-    class RailwayStation{
+    class RailwayStation final{
         int rail_num;
         std::deque <std::shared_ptr<ITrain>> train_queue;
         std::vector <std::shared_ptr<ITrain>> rails;
         std::map<unsigned int,std::shared_ptr<ITrain>> trains;
-        static RailwayStation * station_instance;
+        static RailwayStation * class_instance;
         static std::atomic<unsigned int> id_counter;
+        
+       
         public:
         
         RailwayStation(const int &rail_num);
@@ -87,7 +89,16 @@ namespace railway{
         void register_train(std::shared_ptr<ITrain> train);        
                 
     };
-
+    class RailwayStationStat final{
+        static RailwayStationStat * class_instance;
+        RailwayStationStat() {};
+        
+        unsigned int average_delay;
+        public:
+        
+        unsigned int get_average_delay() ; 
+        static RailwayStationStat * get_instance();
+    };
     
     
 

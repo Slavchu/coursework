@@ -70,10 +70,11 @@
     return ::grpc::Status::OK;
 }
 
-::grpc::Status RailwayService::GetAllTrain(::grpc::ServerContext *context, const ::GRPCRailway::Empty *request, ::GRPCRailway::TrainArray *response)
-{
+::grpc::Status RailwayService::GetAllTrain(::grpc::ServerContext *context, const ::GRPCRailway::Empty *request, ::GRPCRailway::TrainArray *response){
+
     if(!railway::RailwayStation::get_instance()) return ::grpc::Status::CANCELLED;
     auto all_trains = railway::RailwayStation::get_instance()->get_all_trains();
+    response->set_average_delay( railway::RailwayStationStat::get_instance()->get_average_delay());
     for(auto &it : all_trains){
         
         auto res = response->add_train_array();

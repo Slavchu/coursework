@@ -72,6 +72,25 @@ a{
     font-size: medium;
     
 }
+.TrainList .Stats {
+    
+    margin: 3%;
+    display: inline;
+    text-align: right;
+    color:white;
+    font-family: "Raleway", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: large;
+    background-color: rgb(43, 88, 75);
+    border-radius: 5px;
+}
+.TrainList .Stats p{
+    display: inline;
+    text-align: right;
+
+  
+}
 
 .TrainList  table, th, td{
     
