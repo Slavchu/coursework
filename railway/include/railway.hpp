@@ -15,9 +15,7 @@ namespace railway{
         TRAIN_ARRIVED,
         TRAIN_DEPARTURING
     };
-    enum EError{
-        SEAT_BUSY
-    };
+
     enum ETrainState{
         IN_TRIP,
         IN_QUEUE,
@@ -79,7 +77,7 @@ namespace railway{
         RailwayStation(const int &rail_num);
         
         void train_event(const unsigned int &train_id, const ETrainEvent & train_event);
-        std::shared_ptr<ITrain> get_train_by_id(unsigned int id);
+        std::shared_ptr<ITrain> get_train_by_id(const unsigned int &train_id);
         int get_rail_num() const;
         int get_train_queue_size() const;
         std::vector<std::shared_ptr<ITrain>> get_all_trains() const;

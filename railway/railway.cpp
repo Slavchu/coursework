@@ -81,7 +81,7 @@ void railway::RailwayStation::train_event(const unsigned int &train_id, const ET
     }
 }
 
-std::shared_ptr<ITrain> railway::RailwayStation::get_train_by_id(unsigned int id){
+std::shared_ptr<ITrain> railway::RailwayStation::get_train_by_id(const unsigned int &id){
     if(trains.find(id) != trains.end()){
         return trains[id];
     }
